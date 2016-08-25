@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow.Infrastructure;
+﻿using BoDi;
+using TechTalk.SpecFlow.Configuration;
+using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 
 namespace Ghpr.SpecFlowPlugin
@@ -7,24 +9,28 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
-            Log.Write("Initialize");
+            Log.Write("Initialize... " + runtimePluginParameters.Parameters);
+            
+            runtimePluginEvents.CustomizeTestThreadDependencies += CustomizeTestThreadDependencies;
 
-            //var oc = new ObjectContainer();
-            //oc.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
-            //runtimePluginEvents.RaiseRegisterGlobalDependencies(oc);
-
-            runtimePluginEvents.CustomizeGlobalDependencies += CustomizeGlobalDependencies;
-
+            Log.Write("Done.");
+            
         }
 
         private void CustomizeGlobalDependencies(object sender, CustomizeGlobalDependenciesEventArgs e)
         {
-            CustomizeDependencies(e);
+            e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
         }
 
-        public void CustomizeDependencies(CustomizeGlobalDependenciesEventArgs eventArgs)
+        private void RegisterGlobalDependencies(object sender, RegisterGlobalDependenciesEventArgs e)
         {
-            eventArgs.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
+            e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
+        }
+
+        private void CustomizeTestThreadDependencies(object sender, CustomizeTestThreadDependenciesEventArgs e)
+        {
+            Log.Write("CustomizeTestThreadDependencies...");
+            e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
         }
     }
 }
