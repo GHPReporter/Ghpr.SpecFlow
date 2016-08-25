@@ -14,6 +14,7 @@ namespace Ghpr.SpecFlowPlugin
     {
         private readonly TestExecutionEngine _engine;
 
+
         public GhprTestExecutionEngine(
             IStepFormatter stepFormatter, 
             ITestTracer testTracer, 
@@ -58,7 +59,7 @@ namespace Ghpr.SpecFlowPlugin
         public void OnFeatureStart(FeatureInfo featureInfo)
         {
             _engine.OnFeatureStart(featureInfo);
-            Log.Write("Feature start");
+            Log.Write($"Feature start! {featureInfo.Title}: {featureInfo.Description}");
         }
 
         public void OnFeatureEnd()
@@ -70,7 +71,7 @@ namespace Ghpr.SpecFlowPlugin
         public void OnScenarioStart(ScenarioInfo scenarioInfo)
         {
             _engine.OnScenarioStart(scenarioInfo);
-            Log.Write("Scenario start");
+            Log.Write($"Scenario start! {scenarioInfo.Title}");
         }
 
         public void OnAfterLastStep()
@@ -83,13 +84,14 @@ namespace Ghpr.SpecFlowPlugin
         {
             _engine.OnScenarioEnd();
             Log.Write("Scenario end");
+            Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
-            Log.Write("Step");
+            Log.Write($"Step: {stepDefinitionKeyword}, {keyword}, {text}, {multilineTextArg}");
         }
 
         public void Pending()
