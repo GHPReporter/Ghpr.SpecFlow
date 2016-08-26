@@ -12,7 +12,7 @@
 
 [![Language](http://gh-toprated.info/Badges/LanguageBadge?user=GHPReporter&repo=Ghpr.SpecFlow&theme=light&fontWeight=bold)](https://github.com/GHPReporter/Ghpr.SpecFlow)
 [![Build status](https://ci.appveyor.com/api/projects/status/jtmugpb1axnpc97g?svg=true)](https://ci.appveyor.com/project/elv1s42/ghpr-specflow)
-[![NuGet Version](https://img.shields.io/nuget/v/Ghpr.SpecFlow.svg)](https://www.nuget.org/packages/Ghpr.SpecFlow)
+[![NuGet Version](https://img.shields.io/nuget/v/Ghpr.SpecFlowPlugin.svg)](https://www.nuget.org/packages/Ghpr.SpecFlowPlugin)
 
 # Ghpr.SpecFlow
 
