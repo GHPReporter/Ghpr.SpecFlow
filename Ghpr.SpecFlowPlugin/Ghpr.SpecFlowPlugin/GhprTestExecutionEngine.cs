@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
@@ -14,7 +16,8 @@ namespace Ghpr.SpecFlowPlugin
     public class GhprTestExecutionEngine : ITestExecutionEngine
     {
         private readonly TestExecutionEngine _engine;
-        
+        private readonly StringWriter _sw;
+
         public GhprTestExecutionEngine(
             IStepFormatter stepFormatter, 
             ITestTracer testTracer, 
@@ -42,8 +45,9 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
+            _sw = new StringWriter();
         }
-
+        
         public void OnTestRunStart()
         {
             _engine.OnTestRunStart();
@@ -67,19 +71,15 @@ namespace Ghpr.SpecFlowPlugin
             _engine.OnFeatureEnd();
             Log.Write("Feature end");
         }
-
+        
         public void OnScenarioStart(ScenarioInfo scenarioInfo)
         {
             _engine.OnScenarioStart(scenarioInfo);
             Log.Write($"Scenario start! {scenarioInfo.Title}, Tags: {string.Join(", ", scenarioInfo.Tags)}");
+            
+            Console.SetOut(_sw);
         }
-
-        public void OnAfterLastStep()
-        {
-            _engine.OnAfterLastStep();
-            Log.Write("Last step");
-        }
-
+        
         public void OnScenarioEnd()
         {
             _engine.OnScenarioEnd();
@@ -88,6 +88,15 @@ namespace Ghpr.SpecFlowPlugin
             Log.Write("Context count: " + (ScenarioContext.Current?.Count));
             Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
             Log.Write("Test Error Stack: " + (ScenarioContext.Current?.TestError?.StackTrace ?? "null"));
+
+            Log.Write("SW!!!! " + _sw);
+            _sw.Dispose();
+        }
+
+        public void OnAfterLastStep()
+        {
+            _engine.OnAfterLastStep();
+            Log.Write("Last step");
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
