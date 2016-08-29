@@ -4,16 +4,26 @@ namespace Ghpr.SpecFlowPlugin
 {
     public static class OutputWriter
     {
-        private static StringWriter _sw;
+        private static readonly StringWriter Sw;
 
         static OutputWriter()
         {
-            _sw = new StringWriter();
+            Sw = new StringWriter();
+        }
+
+        public static void Flush()
+        {
+            Sw.Flush();
+        }
+
+        public static void Dispose()
+        {
+            Sw.Dispose();
         }
 
         public static void Write(string s)
         {
-            _sw.Write(s);
+            Sw.Write(s);
         }
     }
 }
