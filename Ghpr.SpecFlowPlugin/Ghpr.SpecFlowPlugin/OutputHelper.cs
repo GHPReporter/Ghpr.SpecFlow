@@ -2,11 +2,11 @@
 
 namespace Ghpr.SpecFlowPlugin
 {
-    public static class OutputWriter
+    public static class OutputHelper
     {
         private static readonly StringWriter Sw;
 
-        static OutputWriter()
+        static OutputHelper()
         {
             Sw = new StringWriter();
         }

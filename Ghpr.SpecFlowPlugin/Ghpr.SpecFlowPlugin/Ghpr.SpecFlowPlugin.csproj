@@ -74,7 +74,7 @@
     <Compile Include="GhprTraceListener.cs" />
     <Compile Include="GhprTraceListenerQueue.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="OutputWriter.cs" />
+    <Compile Include="OutputHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
