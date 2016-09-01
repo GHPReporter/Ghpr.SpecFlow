@@ -8,23 +8,8 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
-            Log.Write("Initialize... " + runtimePluginParameters.Parameters);
-
             runtimePluginEvents.CustomizeTestThreadDependencies += CustomizeTestThreadDependencies;
-            
-            Log.Write("Done.");
-            
         }
-
-        /*private void CustomizeGlobalDependencies(object sender, CustomizeGlobalDependenciesEventArgs e)
-        {
-            e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
-        }
-
-        private void RegisterGlobalDependencies(object sender, RegisterGlobalDependenciesEventArgs e)
-        {
-            e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
-        }*/
 
         private static void CustomizeTestThreadDependencies(object sender, CustomizeTestThreadDependenciesEventArgs e)
         {

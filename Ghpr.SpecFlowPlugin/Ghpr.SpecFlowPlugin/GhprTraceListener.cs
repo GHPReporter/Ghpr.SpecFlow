@@ -6,12 +6,12 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void WriteTestOutput(string message)
         {
-            Log.Write("    TestOutput: " + message);
+            OutputHelper.WriteLine(message);
         }
 
         public void WriteToolOutput(string message)
         {
-            Log.Write("    ToolOutput: " + message);
+            OutputHelper.WriteLine("-> " + message);
         }
     }
 }
