@@ -87,7 +87,7 @@ namespace Ghpr.SpecFlowPlugin
             _currentTestRun = new TestRun
             {
                 Name = scenarioInfo.Title,
-                FullName = $"",
+                FullName = $"{_currentFeatureInfo.Title}.{scenarioInfo.Title}",
                 Categories = scenarioInfo.Tags
             };
             _reporter.TestStarted(_currentTestRun);
