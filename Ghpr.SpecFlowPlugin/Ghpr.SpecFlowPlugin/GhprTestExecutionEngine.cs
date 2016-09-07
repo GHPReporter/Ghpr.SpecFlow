@@ -5,6 +5,7 @@ using System.Linq;
 using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Interfaces;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.BindingSkeletons;
@@ -101,6 +102,15 @@ namespace Ghpr.SpecFlowPlugin
             //Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
             //Log.Write("Test Error Stack: " + (ScenarioContext.Current?.TestError?.StackTrace ?? "null"));
             
+            var te = ScenarioContext.Current?.TestError;
+
+            _currentTestRun.Output = OutputHelper.GetOutput();
+            _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
+            _currentTestRun.TestMessage = te?.Message ?? "";
+            _currentTestRun.TestStackTrace = te?.StackTrace ?? "";
+
+            _reporter.TestFinished(_currentTestRun);
+
             OutputHelper.Flush();
         }
 
