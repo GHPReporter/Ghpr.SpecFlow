@@ -1,5 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Ghpr.Core;
+using Ghpr.Core.Common;
+using Ghpr.Core.Interfaces;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.BindingSkeletons;
@@ -14,7 +20,10 @@ namespace Ghpr.SpecFlowPlugin
     public class GhprTestExecutionEngine : ITestExecutionEngine
     {
         private readonly TestExecutionEngine _engine;
-        
+        private readonly Reporter _reporter;
+        private FeatureInfo _currentFeatureInfo;
+        private ITestRun _currentTestRun;
+
         public GhprTestExecutionEngine(
             IStepFormatter stepFormatter, 
             ITestTracer testTracer, 
@@ -29,7 +38,6 @@ namespace Ghpr.SpecFlowPlugin
             IDictionary<string, IStepErrorHandler> stepErrorHandlers, 
             IBindingInvoker bindingInvoker)
         {
-            Log.Write("Constructor");
             _engine = new TestExecutionEngine(stepFormatter,
                 testTracer,
                 errorProvider,
@@ -42,65 +50,86 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
+            _reporter = new Reporter();
         }
-
+        
         public void OnTestRunStart()
         {
             _engine.OnTestRunStart();
-            Log.Write("Test run start");
+            OutputHelper.Initialize();
+            _reporter.RunStarted();
         }
 
         public void OnTestRunEnd()
         {
             _engine.OnTestRunEnd();
-            Log.Write("Test run end");
+            OutputHelper.Flush();
+            OutputHelper.Dispose();
+            _reporter.RunFinished();
         }
 
         public void OnFeatureStart(FeatureInfo featureInfo)
         {
+            _currentFeatureInfo = featureInfo;
             _engine.OnFeatureStart(featureInfo);
-            Log.Write($"Feature start! {featureInfo.Title}: {featureInfo.Description}");
         }
 
         public void OnFeatureEnd()
         {
             _engine.OnFeatureEnd();
-            Log.Write("Feature end");
+            OutputHelper.Flush();
         }
-
+        
         public void OnScenarioStart(ScenarioInfo scenarioInfo)
         {
             _engine.OnScenarioStart(scenarioInfo);
-            Log.Write($"Scenario start! {scenarioInfo.Title}, Tags: {string.Join(", ", scenarioInfo.Tags)}");
+            OutputHelper.WriteFeature(_currentFeatureInfo);
+            OutputHelper.WriteScenario(scenarioInfo);
+            _currentTestRun = new TestRun
+            {
+                Name = scenarioInfo.Title,
+                FullName = $"{_currentFeatureInfo.Title}.{scenarioInfo.Title}",
+                Categories = scenarioInfo.Tags
+            };
+            _reporter.TestStarted(_currentTestRun);
+        }
+        
+        public void OnScenarioEnd()
+        {
+            _engine.OnScenarioEnd();
+            //Log.Write("Scenario end");
+            //Log.Write("Context count: " + (ScenarioContext.Current?.Count));
+            //Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
+            //Log.Write("Test Error Stack: " + (ScenarioContext.Current?.TestError?.StackTrace ?? "null"));
+            
+            var te = ScenarioContext.Current?.TestError;
+
+            _currentTestRun.Output = OutputHelper.GetOutput();
+            _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
+            _currentTestRun.TestMessage = te?.Message ?? "";
+            _currentTestRun.TestStackTrace = te?.StackTrace ?? "";
+
+            _reporter.TestFinished(_currentTestRun);
+
+            OutputHelper.Flush();
         }
 
         public void OnAfterLastStep()
         {
             _engine.OnAfterLastStep();
-            Log.Write("Last step");
-        }
-
-        public void OnScenarioEnd()
-        {
-            _engine.OnScenarioEnd();
-            Log.Write("Scenario end");
-            //Log.Write("Test: " + (ScenarioContext.Current?. ?? "null"));
-            Log.Write("Context count: " + (ScenarioContext.Current?.Count));
-            Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
-            Log.Write("Test Error Stack: " + (ScenarioContext.Current?.TestError?.StackTrace ?? "null"));
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
-            Log.Write($"Step: {stepDefinitionKeyword}, {keyword}, {text}, {multilineTextArg}");
+            //Log.Write($"Step: {stepDefinitionKeyword}, {keyword}, {text}, {multilineTextArg}");
         }
 
         public void Pending()
         {
             _engine.Pending();
-            Log.Write("Pending");
+            //Log.Write("Pending");
         }
 
         public FeatureContext FeatureContext => _engine.FeatureContext;

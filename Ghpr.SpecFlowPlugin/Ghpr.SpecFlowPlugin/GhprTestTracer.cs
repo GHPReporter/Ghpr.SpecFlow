@@ -4,12 +4,24 @@ using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.Bindings.Reflection;
+using TechTalk.SpecFlow.BindingSkeletons;
+using TechTalk.SpecFlow.Configuration;
 using TechTalk.SpecFlow.Tracing;
 
 namespace Ghpr.SpecFlowPlugin
 {
     public class GhprTestTracer : ITestTracer
     {
+        private TestTracer _testTracer;
+
+        public GhprTestTracer(ITraceListener traceListener, 
+            IStepFormatter stepFormatter, 
+            IStepDefinitionSkeletonProvider stepDefinitionSkeletonProvider, 
+            RuntimeConfiguration runtimeConfiguration)
+        {
+            _testTracer = new TestTracer(traceListener, stepFormatter, stepDefinitionSkeletonProvider, runtimeConfiguration);
+        }
+
         public void TraceStep(StepInstance stepInstance, bool showAdditionalArguments)
         {
             Log.Write("  TraceStep: " + stepInstance.Text + showAdditionalArguments);
@@ -49,6 +61,7 @@ namespace Ghpr.SpecFlowPlugin
             CultureInfo bindingCulture, List<BindingMatch> matchesWithoutScopeCheck)
         {
             Log.Write("  TraceNoMatchingStepDefinition: " + stepInstance.Text);
+            //ITraceListenerQueue
         }
 
         public void TraceError(Exception ex)
