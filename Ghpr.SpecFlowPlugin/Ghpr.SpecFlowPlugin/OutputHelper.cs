@@ -7,9 +7,11 @@ namespace Ghpr.SpecFlowPlugin
     public static class OutputHelper
     {
         private static StringWriter _sw;
-        
+        private static TextWriter _tw;
+
         public static void Initialize()
         {
+            _tw = Console.Out;
             _sw = new StringWriter();
             Console.SetOut(_sw);
         }
@@ -24,6 +26,7 @@ namespace Ghpr.SpecFlowPlugin
         public static void Dispose()
         {
             _sw?.Dispose();
+            Console.SetOut(_tw);
         }
 
         public static void WriteLine(string s)
