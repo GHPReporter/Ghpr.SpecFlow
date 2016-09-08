@@ -17,5 +17,15 @@
 # Ghpr.SpecFlow
 
 ##Usage:
- - TODO
+ - Install latest nuget package
+ - Add new plugin to your App.config file:
 
+    ```xml
+    <plugins>
+      <add name="Ghpr" path="..\packages\Ghpr.SpecFlowPlugin.0.0.4.2\lib\net452" type="Runtime" />
+    </plugins>
+    ```
+    
+ - Run your tests
+ 
+For more information see working solution example here: https://github.com/GHPReporter/Ghpr.SpecFlow.Examples
