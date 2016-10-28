@@ -22,7 +22,7 @@
 
     ```xml
     <plugins>
-      <add name="Ghpr" path="..\packages\Ghpr.SpecFlowPlugin.0.0.4.2\lib\net452" type="Runtime" />
+      <add name="Ghpr" type="Runtime" />
     </plugins>
     ```
     
