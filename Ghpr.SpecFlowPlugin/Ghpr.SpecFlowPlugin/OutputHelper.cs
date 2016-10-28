@@ -16,11 +16,13 @@ namespace Ghpr.SpecFlowPlugin
             Console.SetOut(_sw);
         }
 
-        public static void Flush()
-        {
-            _sw?.Flush();
-            var sb = _sw?.GetStringBuilder();
-            sb?.Remove(0, sb.Length);
+        public static void Flush() {
+            if (_sw != null) {
+                _tw.Write(_sw.ToString());
+                _sw.Flush();
+                var sb = _sw.GetStringBuilder();
+                sb.Remove(0, sb.Length);
+            }
         }
 
         public static void Dispose()
