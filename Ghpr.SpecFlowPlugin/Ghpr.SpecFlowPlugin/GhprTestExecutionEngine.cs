@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Interfaces;
+using Ghpr.SpecFlowPlugin.Utils;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
@@ -50,8 +52,9 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
-            _reporter = new Reporter();
+            _reporter = new Reporter(new Settings());
         }
+
         
         public void OnTestRunStart()
         {
