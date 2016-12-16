@@ -100,10 +100,6 @@ namespace Ghpr.SpecFlowPlugin
         public void OnScenarioEnd()
         {
             _engine.OnScenarioEnd();
-            //Log.Write("Scenario end");
-            //Log.Write("Context count: " + (ScenarioContext.Current?.Count));
-            //Log.Write("Test Error Message: " + (ScenarioContext.Current?.TestError?.Message ?? "null"));
-            //Log.Write("Test Error Stack: " + (ScenarioContext.Current?.TestError?.StackTrace ?? "null"));
             
             var te = ScenarioContext.Current?.TestError;
 
@@ -126,13 +122,11 @@ namespace Ghpr.SpecFlowPlugin
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
-            //Log.Write($"Step: {stepDefinitionKeyword}, {keyword}, {text}, {multilineTextArg}");
         }
 
         public void Pending()
         {
             _engine.Pending();
-            //Log.Write("Pending");
         }
 
         public FeatureContext FeatureContext => _engine.FeatureContext;
