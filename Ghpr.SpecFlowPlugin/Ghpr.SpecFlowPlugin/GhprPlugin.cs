@@ -13,11 +13,8 @@ namespace Ghpr.SpecFlowPlugin
 
         private static void CustomizeTestThreadDependencies(object sender, CustomizeTestThreadDependenciesEventArgs e)
         {
-            //Log.Write("CustomizeTestThreadDependencies...");
             e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
-            //e.ObjectContainer.RegisterTypeAs<GhprTraceListenerQueue, ITraceListenerQueue>();
             e.ObjectContainer.RegisterTypeAs<GhprTraceListener, ITraceListener>();
-            //e.ObjectContainer.RegisterTypeAs<GhprTestTracer, ITestTracer>();
         }
     }
 }
