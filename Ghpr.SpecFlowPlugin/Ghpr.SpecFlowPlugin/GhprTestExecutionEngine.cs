@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Enums;
 using Ghpr.Core.Interfaces;
-using Ghpr.SpecFlowPlugin.Utils;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
