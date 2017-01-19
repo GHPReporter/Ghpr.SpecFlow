@@ -15,4 +15,8 @@
     <copyright>Copyright Evgeniy Kosjakov © 2016</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\Ghpr.SpecFlowPlugin.dll" target="lib" />
+    <file src="bin\Release\Ghpr.SpecFlow.Settings.json" target="content" />
+  </files>
 </package>

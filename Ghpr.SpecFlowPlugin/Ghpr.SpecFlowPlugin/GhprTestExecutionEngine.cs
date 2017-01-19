@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Ghpr.Core;
 using Ghpr.Core.Common;
+using Ghpr.Core.Enums;
 using Ghpr.Core.Interfaces;
 using Ghpr.SpecFlowPlugin.Utils;
 using NUnit.Framework;
@@ -52,9 +53,8 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
-            _reporter = new Reporter(new Settings());
+            _reporter = new Reporter(TestingFramework.SpecFlow);
         }
-
         
         public void OnTestRunStart()
         {
