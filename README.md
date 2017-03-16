@@ -16,7 +16,8 @@
 
 # Ghpr.SpecFlow
 
-##Usage:
+## Usage:
+
  - Install latest nuget package
  - Add new plugin to your App.config file:
 
