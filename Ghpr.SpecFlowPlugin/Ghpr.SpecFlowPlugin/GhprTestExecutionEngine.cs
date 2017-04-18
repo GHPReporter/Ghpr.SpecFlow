@@ -96,7 +96,7 @@ namespace Ghpr.SpecFlowPlugin
         {
             _engine.OnScenarioEnd();
             
-            var te = ScenarioContext.Current?.TestError;
+            var te = _engine.ScenarioContext?.TestError;
             _currentTestRun.Output = OutputHelper.GetOutput();
             _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
             _currentTestRun.TestMessage = te?.Message ?? "";
