@@ -77,6 +77,7 @@
     <Compile Include="GhprTestExecutionEngine.cs" />
     <Compile Include="GhprTraceListener.cs" />
     <Compile Include="OutputHelper.cs" />
+    <Compile Include="OutputWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Enums;
 using Ghpr.Core.Interfaces;
+using Ghpr.Core.Utils;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
@@ -21,6 +22,8 @@ namespace Ghpr.SpecFlowPlugin
         private readonly Reporter _reporter;
         private FeatureInfo _currentFeatureInfo;
         private ITestRun _currentTestRun;
+        
+        private readonly Log _l;
 
         public GhprTestExecutionEngine(
             IStepFormatter stepFormatter, 
@@ -48,14 +51,21 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
+            
             _reporter = new Reporter(TestingFramework.SpecFlow);
+
+            _l = new Log(_reporter.Settings.OutputPath, "plugin.txt");
+            //_l.Write("constructor");
         }
         
         public void OnTestRunStart()
         {
             _engine.OnTestRunStart();
-            OutputHelper.Initialize();
             _reporter.RunStarted();
+
+            OutputHelper.Initialize();
+
+            //_l.Write("run started");
         }
 
         public void OnTestRunEnd()
@@ -64,18 +74,24 @@ namespace Ghpr.SpecFlowPlugin
             OutputHelper.Flush();
             OutputHelper.Dispose();
             _reporter.RunFinished();
+
+            //_l.Write("run finished");
         }
 
         public void OnFeatureStart(FeatureInfo featureInfo)
         {
             _currentFeatureInfo = featureInfo;
             _engine.OnFeatureStart(featureInfo);
+
+            //_l.Write($"feature '{featureInfo.Title}' started");
         }
 
         public void OnFeatureEnd()
         {
             _engine.OnFeatureEnd();
             OutputHelper.Flush();
+
+            //_l.Write("feature finished");
         }
         
         public void OnScenarioStart(ScenarioInfo scenarioInfo)
@@ -83,15 +99,20 @@ namespace Ghpr.SpecFlowPlugin
             _engine.OnScenarioStart(scenarioInfo);
             OutputHelper.WriteFeature(_currentFeatureInfo);
             OutputHelper.WriteScenario(scenarioInfo);
+
+            //_engine.ScenarioContext.StepContext.StepInfo.MultilineText;
+
             _currentTestRun = new TestRun
             {
                 Name = scenarioInfo.Title,
-                FullName = $"{_currentFeatureInfo.Title}.{scenarioInfo.Title}",
+                FullName = $"{TestContext.CurrentContext.Test.ClassName}.{_currentFeatureInfo.Title}",
                 Categories = scenarioInfo.Tags
             };
             _reporter.TestStarted(_currentTestRun);
+            
+            //_l.Write($"scenario '{scenarioInfo.Title}' started");
         }
-        
+
         public void OnScenarioEnd()
         {
             _engine.OnScenarioEnd();
@@ -104,18 +125,25 @@ namespace Ghpr.SpecFlowPlugin
 
             _reporter.TestFinished(_currentTestRun);
 
+            //_l.Write("scenario finished");
+
             OutputHelper.Flush();
         }
 
         public void OnAfterLastStep()
         {
             _engine.OnAfterLastStep();
+
+            //_l.Write("after last step");
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
+            _currentTestRun.FullName += text;
+            OutputHelper.WriteStep(text);
+            //_l.Write($"step: '{text}'");
         }
 
         public void Pending()
