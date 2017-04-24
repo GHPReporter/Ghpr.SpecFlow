@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BoDi;
 using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Interfaces;
@@ -54,9 +55,9 @@ namespace Ghpr.SpecFlowPlugin
                 stepErrorHandlers,
                 bindingInvoker);
             _outputWriter = new OutputWriter();
-
-            _l = new Log(ReporterManager.OutputPath, $"plugin_{Guid.NewGuid()}.txt");
-            _l.Write("constructor");
+            
+            _l = new Log(ReporterManager.OutputPath, $"execution_engine_{Guid.NewGuid()}.txt");
+            _l.Write($"constructor: {1}");
         }
         
         public void OnTestRunStart()

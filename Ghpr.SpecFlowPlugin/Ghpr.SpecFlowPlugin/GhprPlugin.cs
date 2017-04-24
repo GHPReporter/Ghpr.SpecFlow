@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow.Infrastructure;
+﻿using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 using TechTalk.SpecFlow.Tracing;
 
@@ -13,6 +14,7 @@ namespace Ghpr.SpecFlowPlugin
 
         private static void CustomizeTestThreadDependencies(object sender, CustomizeTestThreadDependenciesEventArgs e)
         {
+            e.ObjectContainer.RegisterTypeAs<GhprTestRunner, ITestRunner>();
             e.ObjectContainer.RegisterTypeAs<GhprTestExecutionEngine, ITestExecutionEngine>();
             e.ObjectContainer.RegisterTypeAs<GhprTraceListener, ITraceListener>();
         }

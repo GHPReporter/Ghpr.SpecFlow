@@ -73,6 +73,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GhprTestRunner.cs" />
+    <Compile Include="GhprTestTracer.cs" />
     <Compile Include="GhprPlugin.cs" />
     <Compile Include="GhprTestExecutionEngine.cs" />
     <Compile Include="GhprTraceListener.cs" />
