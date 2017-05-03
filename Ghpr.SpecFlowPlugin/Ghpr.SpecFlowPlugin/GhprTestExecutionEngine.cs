@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Ghpr.Core;
 using Ghpr.Core.Common;
-using Ghpr.Core.Enums;
 using Ghpr.Core.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -18,9 +18,11 @@ namespace Ghpr.SpecFlowPlugin
     public class GhprTestExecutionEngine : ITestExecutionEngine
     {
         private readonly TestExecutionEngine _engine;
-        private readonly Reporter _reporter;
         private FeatureInfo _currentFeatureInfo;
         private ITestRun _currentTestRun;
+        private OutputWriter _outputWriter;
+        
+        private static readonly object Lock = new object();
 
         public GhprTestExecutionEngine(
             IStepFormatter stepFormatter, 
@@ -48,63 +50,93 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
-            _reporter = new Reporter(TestingFramework.SpecFlow);
         }
         
         public void OnTestRunStart()
         {
-            _engine.OnTestRunStart();
-            OutputHelper.Initialize();
-            _reporter.RunStarted();
+            lock (Lock)
+            {
+                ReporterManager.RunStarted();
+                //OutputHelper.Initialize();
+                _engine.OnTestRunStart();
+            }
         }
 
         public void OnTestRunEnd()
         {
-            _engine.OnTestRunEnd();
-            OutputHelper.Flush();
-            OutputHelper.Dispose();
-            _reporter.RunFinished();
+            lock (Lock)
+            {
+                //OutputHelper.Flush();
+                //OutputHelper.Dispose();
+                //_outputWriter.Flush();
+                //_outputWriter.Dispose();
+                ReporterManager.RunFinished();
+                _engine.OnTestRunEnd();
+            }
         }
 
         public void OnFeatureStart(FeatureInfo featureInfo)
         {
-            _currentFeatureInfo = featureInfo;
-            _engine.OnFeatureStart(featureInfo);
+            lock (Lock)
+            {
+                _currentFeatureInfo = featureInfo;
+                _engine.OnFeatureStart(featureInfo);
+            }
         }
 
         public void OnFeatureEnd()
         {
-            _engine.OnFeatureEnd();
-            OutputHelper.Flush();
+            lock (Lock)
+            {
+                //OutputHelper.Flush();
+                //_outputWriter.Flush();
+                _engine.OnFeatureEnd();
+            }
         }
         
         public void OnScenarioStart(ScenarioInfo scenarioInfo)
         {
-            _engine.OnScenarioStart(scenarioInfo);
-            OutputHelper.WriteFeature(_currentFeatureInfo);
-            OutputHelper.WriteScenario(scenarioInfo);
-            _currentTestRun = new TestRun
+            lock (Lock)
             {
-                Name = scenarioInfo.Title,
-                FullName = $"{_currentFeatureInfo.Title}.{scenarioInfo.Title}",
-                Categories = scenarioInfo.Tags
-            };
-            _reporter.TestStarted(_currentTestRun);
+                _outputWriter = new OutputWriter();
+                //OutputHelper.WriteFeature(_currentFeatureInfo);
+                //OutputHelper.WriteScenario(scenarioInfo);
+                _outputWriter.WriteFeature(_currentFeatureInfo);
+                _outputWriter.WriteScenario(scenarioInfo);
+                var className = TestContext.CurrentContext.Test.ClassName;
+                var testName = TestContext.CurrentContext.Test.Name;
+                var names = className.Split('.').ToList();
+                if (names.Count >= 2)
+                {
+                    names.RemoveAt(names.Count - 1);
+                }
+                className = string.Join(".", names);
+                _currentTestRun = new TestRun
+                {
+                    Name = scenarioInfo.Title,
+                    FullName = $"{className}.{_currentFeatureInfo.Title}.{testName}",
+                    Categories = scenarioInfo.Tags
+                };
+                ReporterManager.TestStarted(_currentTestRun);
+                _engine.OnScenarioStart(scenarioInfo);
+            }
         }
-        
+
         public void OnScenarioEnd()
         {
-            _engine.OnScenarioEnd();
-            
-            var te = ScenarioContext.Current?.TestError;
-            _currentTestRun.Output = OutputHelper.GetOutput();
-            _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
-            _currentTestRun.TestMessage = te?.Message ?? "";
-            _currentTestRun.TestStackTrace = te?.StackTrace ?? "";
-
-            _reporter.TestFinished(_currentTestRun);
-
-            OutputHelper.Flush();
+            lock (Lock)
+            {
+                var te = _engine.ScenarioContext?.TestError;
+                //_currentTestRun.Output = OutputHelper.GetOutput();
+                _currentTestRun.Output = _outputWriter.GetOutput();
+                _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
+                _currentTestRun.TestMessage = te?.Message ?? "";
+                _currentTestRun.TestStackTrace = te?.StackTrace ?? "";
+                ReporterManager.TestFinished(_currentTestRun);
+                _engine.OnScenarioEnd();
+                //OutputHelper.Flush();
+                _outputWriter.Flush();
+            }
         }
 
         public void OnAfterLastStep()
@@ -116,6 +148,8 @@ namespace Ghpr.SpecFlowPlugin
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
+            //OutputHelper.WriteStep(text);
+            _outputWriter.WriteStep(text);
         }
 
         public void Pending()

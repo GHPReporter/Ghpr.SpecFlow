@@ -47,6 +47,11 @@ namespace Ghpr.SpecFlowPlugin
         {
             _sw.WriteLine($"{scenarioInfo.Title}");
         }
+        
+        public static void WriteStep(string text)
+        {
+            _sw.WriteLine($"Step: {text}");
+        }
 
         public static string GetOutput()
         {
