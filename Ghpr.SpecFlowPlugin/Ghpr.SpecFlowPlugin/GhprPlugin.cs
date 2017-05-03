@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿using Ghpr.Core;
+using Ghpr.Core.Enums;
+using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 using TechTalk.SpecFlow.Tracing;
@@ -9,6 +11,8 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
+            GhprPluginHelper.Init();
+            ReporterManager.Initialize(TestingFramework.SpecFlow);
             runtimePluginEvents.CustomizeTestThreadDependencies += CustomizeTestThreadDependencies;
         }
 

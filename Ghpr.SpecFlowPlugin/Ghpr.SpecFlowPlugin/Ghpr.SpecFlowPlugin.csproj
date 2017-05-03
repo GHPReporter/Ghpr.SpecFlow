@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GhprPluginHelper.cs" />
     <Compile Include="GhprTestRunner.cs" />
     <Compile Include="GhprTestTracer.cs" />
     <Compile Include="GhprPlugin.cs" />
@@ -88,7 +89,9 @@
     <None Include="Ghpr.SpecFlow.Settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Ghpr.SpecFlow.nuspec" />
+    <None Include="Ghpr.SpecFlow.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

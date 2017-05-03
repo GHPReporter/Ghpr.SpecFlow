@@ -8,12 +8,18 @@ namespace Ghpr.SpecFlowPlugin
     {
         private readonly StringWriter _sw;
         private readonly TextWriter _tw;
+        private readonly bool _outputRedirected;
 
         public OutputWriter()
         {
+            _outputRedirected = false;
             _tw = Console.Out;
             _sw = new StringWriter();
-            Console.SetOut(_sw);
+            if (!GhprPluginHelper.TestsAreRunningInParallel)
+            {
+                Console.SetOut(_sw);
+                _outputRedirected = true;
+            }
         }
 
         public void Flush()
@@ -31,7 +37,10 @@ namespace Ghpr.SpecFlowPlugin
         public void Dispose()
         {
             _sw?.Dispose();
-            Console.SetOut(_tw);
+            if (_outputRedirected)
+            {
+                Console.SetOut(_tw);
+            }
         }
 
         public void WriteLine(string s)
@@ -52,7 +61,7 @@ namespace Ghpr.SpecFlowPlugin
 
         public void WriteStep(string text)
         {
-            _sw.WriteLine($"Step: {text}");
+            _sw.WriteLine($"Step '{text}' is done.");
         }
 
         public string GetOutput()
