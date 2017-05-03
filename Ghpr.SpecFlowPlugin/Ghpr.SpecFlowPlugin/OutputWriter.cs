@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Ghpr.Core.Utils;
 using TechTalk.SpecFlow;
 
 namespace Ghpr.SpecFlowPlugin
@@ -15,8 +16,10 @@ namespace Ghpr.SpecFlowPlugin
             _outputRedirected = false;
             _tw = Console.Out;
             _sw = new StringWriter();
+            StaticLog.Logger().Write($"OutputWriter Constr 1: {GhprPluginHelper.TestsAreRunningInParallel}");
             if (!GhprPluginHelper.TestsAreRunningInParallel)
             {
+                StaticLog.Logger().Write($"OutputWriter Constr 2: {GhprPluginHelper.TestsAreRunningInParallel}");
                 Console.SetOut(_sw);
                 _outputRedirected = true;
             }

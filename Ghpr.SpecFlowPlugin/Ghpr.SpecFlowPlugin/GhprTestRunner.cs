@@ -1,30 +1,23 @@
-﻿using System;
-using Ghpr.Core;
-using Ghpr.Core.Utils;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 
 namespace Ghpr.SpecFlowPlugin
 {
     public class GhprTestRunner : ITestRunner
     {
-        //private readonly Log _l;
         private readonly ITestRunner _runner;
         private readonly ITestExecutionEngine _engine;
 
         public GhprTestRunner(ITestExecutionEngine engine)
         {
-            //_l = new Log(ReporterManager.OutputPath, $"runner_{Guid.NewGuid()}.txt");
             _runner = new TestRunner(engine);
             _engine = engine;
-            //_l.Write($"constructor");
             GhprPluginHelper.TestRunnerInitialized();
         }
 
         public void InitializeTestRunner(int threadId)
         {
             _runner.InitializeTestRunner(threadId);
-            //_l.Write($"init: {threadId}");
         }
 
         public void OnTestRunStart()

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using BoDi;
 using Ghpr.Core;
 using Ghpr.Core.Common;
-using Ghpr.Core.Enums;
 using Ghpr.Core.Interfaces;
-using Ghpr.Core.Utils;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
@@ -24,9 +20,8 @@ namespace Ghpr.SpecFlowPlugin
         private readonly TestExecutionEngine _engine;
         private FeatureInfo _currentFeatureInfo;
         private ITestRun _currentTestRun;
-        private readonly OutputWriter _outputWriter;
-
-        //private readonly Log _l;
+        private OutputWriter _outputWriter;
+        
         private static readonly object Lock = new object();
 
         public GhprTestExecutionEngine(
@@ -56,8 +51,6 @@ namespace Ghpr.SpecFlowPlugin
                 stepErrorHandlers,
                 bindingInvoker);
             _outputWriter = new OutputWriter();
-            //_l = new Log(ReporterManager.OutputPath, $"execution_engine_{Guid.NewGuid()}.txt");
-            //_l.Write($"constructor: {1}");
         }
         
         public void OnTestRunStart()
@@ -67,7 +60,6 @@ namespace Ghpr.SpecFlowPlugin
                 ReporterManager.RunStarted();
                 //OutputHelper.Initialize();
                 _engine.OnTestRunStart();
-                //_l.Write("run started");
             }
         }
 
@@ -81,7 +73,6 @@ namespace Ghpr.SpecFlowPlugin
                 _outputWriter.Dispose();
                 ReporterManager.RunFinished();
                 _engine.OnTestRunEnd();
-                //_l.Write("run finished");
             }
         }
 
@@ -91,7 +82,6 @@ namespace Ghpr.SpecFlowPlugin
             {
                 _currentFeatureInfo = featureInfo;
                 _engine.OnFeatureStart(featureInfo);
-                //_l.Write($"feature '{featureInfo.Title}' started");
             }
         }
 
@@ -102,7 +92,6 @@ namespace Ghpr.SpecFlowPlugin
                 //OutputHelper.Flush();
                 _outputWriter.Flush();
                 _engine.OnFeatureEnd();
-                //_l.Write("feature finished");
             }
         }
         
@@ -110,6 +99,7 @@ namespace Ghpr.SpecFlowPlugin
         {
             lock (Lock)
             {
+                
                 //OutputHelper.WriteFeature(_currentFeatureInfo);
                 //OutputHelper.WriteScenario(scenarioInfo);
                 _outputWriter.WriteFeature(_currentFeatureInfo);
@@ -130,7 +120,6 @@ namespace Ghpr.SpecFlowPlugin
                 };
                 ReporterManager.TestStarted(_currentTestRun);
                 _engine.OnScenarioStart(scenarioInfo);
-                //_l.Write($"scenario '{scenarioInfo.Title}' started");
             }
         }
 
@@ -148,14 +137,12 @@ namespace Ghpr.SpecFlowPlugin
                 _engine.OnScenarioEnd();
                 //OutputHelper.Flush();
                 _outputWriter.Flush();
-                //_l.Write("scenario finished");
             }
         }
 
         public void OnAfterLastStep()
         {
             _engine.OnAfterLastStep();
-            //_l.Write("after last step");
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
