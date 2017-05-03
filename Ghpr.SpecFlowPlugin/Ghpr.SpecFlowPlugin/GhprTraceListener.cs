@@ -18,12 +18,12 @@ namespace Ghpr.SpecFlowPlugin
         
         public void WriteTestOutput(string message)
         {
-            //_traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, false);
+            _traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, false);
         }
 
         public void WriteToolOutput(string message)
         {
-            //_traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, true);
+            _traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, true);
         }
     }
 }

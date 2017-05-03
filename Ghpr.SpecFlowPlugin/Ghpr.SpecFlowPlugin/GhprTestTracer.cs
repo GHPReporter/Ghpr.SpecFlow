@@ -4,7 +4,6 @@ using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.Bindings.Reflection;
-using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Tracing;
 
 namespace Ghpr.SpecFlowPlugin

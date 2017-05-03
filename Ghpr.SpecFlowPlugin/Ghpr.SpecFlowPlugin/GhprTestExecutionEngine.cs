@@ -50,7 +50,6 @@ namespace Ghpr.SpecFlowPlugin
                 stepDefinitionMatchService,
                 stepErrorHandlers,
                 bindingInvoker);
-            _outputWriter = new OutputWriter();
         }
         
         public void OnTestRunStart()
@@ -69,8 +68,8 @@ namespace Ghpr.SpecFlowPlugin
             {
                 //OutputHelper.Flush();
                 //OutputHelper.Dispose();
-                _outputWriter.Flush();
-                _outputWriter.Dispose();
+                //_outputWriter.Flush();
+                //_outputWriter.Dispose();
                 ReporterManager.RunFinished();
                 _engine.OnTestRunEnd();
             }
@@ -90,7 +89,7 @@ namespace Ghpr.SpecFlowPlugin
             lock (Lock)
             {
                 //OutputHelper.Flush();
-                _outputWriter.Flush();
+                //_outputWriter.Flush();
                 _engine.OnFeatureEnd();
             }
         }
@@ -99,7 +98,7 @@ namespace Ghpr.SpecFlowPlugin
         {
             lock (Lock)
             {
-                
+                _outputWriter = new OutputWriter();
                 //OutputHelper.WriteFeature(_currentFeatureInfo);
                 //OutputHelper.WriteScenario(scenarioInfo);
                 _outputWriter.WriteFeature(_currentFeatureInfo);

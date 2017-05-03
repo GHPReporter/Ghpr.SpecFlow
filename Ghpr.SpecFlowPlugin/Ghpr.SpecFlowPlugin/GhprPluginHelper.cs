@@ -1,6 +1,4 @@
-﻿using Ghpr.Core.Utils;
-
-namespace Ghpr.SpecFlowPlugin
+﻿namespace Ghpr.SpecFlowPlugin
 {
     public static class GhprPluginHelper
     {
@@ -19,7 +17,6 @@ namespace Ghpr.SpecFlowPlugin
             lock (Lock)
             {
                 GhprTestRunnerCount = 0;
-                StaticLog.Logger().Write("Init!");
             }
         }
 
@@ -28,7 +25,6 @@ namespace Ghpr.SpecFlowPlugin
             lock (Lock)
             {
                 GhprTestRunnerCount++;
-                StaticLog.Logger().Write($"C: {GhprTestRunnerCount}");
                 if (GhprTestRunnerCount > 1)
                 {
                     TestsAreRunningInParallel = true;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Ghpr.Core.Utils;
 using TechTalk.SpecFlow;
 
 namespace Ghpr.SpecFlowPlugin
@@ -16,10 +15,8 @@ namespace Ghpr.SpecFlowPlugin
             _outputRedirected = false;
             _tw = Console.Out;
             _sw = new StringWriter();
-            StaticLog.Logger().Write($"OutputWriter Constr 1: {GhprPluginHelper.TestsAreRunningInParallel}");
             if (!GhprPluginHelper.TestsAreRunningInParallel)
             {
-                StaticLog.Logger().Write($"OutputWriter Constr 2: {GhprPluginHelper.TestsAreRunningInParallel}");
                 Console.SetOut(_sw);
                 _outputRedirected = true;
             }
@@ -53,18 +50,18 @@ namespace Ghpr.SpecFlowPlugin
 
         public void WriteFeature(FeatureInfo featureInfo)
         {
-            _sw.WriteLine($"{featureInfo.Title}:");
+            _sw.WriteLine($"Feature: {featureInfo.Title}:");
             _sw.WriteLine($"{featureInfo.Description}");
         }
 
         public void WriteScenario(ScenarioInfo scenarioInfo)
         {
-            _sw.WriteLine($"{scenarioInfo.Title}");
+            _sw.WriteLine($"Scenario: {scenarioInfo.Title}");
         }
 
         public void WriteStep(string text)
         {
-            _sw.WriteLine($"Step '{text}' is done.");
+            _sw.WriteLine($"Step [{text}] is done.");
         }
 
         public string GetOutput()
