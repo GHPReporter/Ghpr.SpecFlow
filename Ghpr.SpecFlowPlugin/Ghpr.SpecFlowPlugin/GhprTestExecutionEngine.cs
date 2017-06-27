@@ -114,7 +114,7 @@ namespace Ghpr.SpecFlowPlugin
                 className = string.Join(".", names);
                 var fullName = $"{className}.{_currentFeatureInfo.Title}.{testName}";
                 var name = scenarioInfo.Title;
-                var guid = GuidConverter.ToMd5HashGuid(_currentTestRun.FullName).ToString();
+                var guid = GuidConverter.ToMd5HashGuid(fullName).ToString();
                 _currentTestRun = new TestRun(guid, name, fullName)
                 {
                     Categories = scenarioInfo.Tags
