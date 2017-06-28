@@ -30,7 +30,7 @@ namespace Ghpr.SpecFlowPlugin
             ITestTracer testTracer, 
             IErrorProvider errorProvider, 
             IStepArgumentTypeConverter stepArgumentTypeConverter, 
-            RuntimeConfiguration runtimeConfiguration, 
+            SpecFlowConfiguration specFlowConfiguration, 
             IBindingRegistry bindingRegistry, 
             IUnitTestRuntimeProvider unitTestRuntimeProvider, 
             IStepDefinitionSkeletonProvider stepDefinitionSkeletonProvider, 
@@ -43,7 +43,7 @@ namespace Ghpr.SpecFlowPlugin
                 testTracer,
                 errorProvider,
                 stepArgumentTypeConverter,
-                runtimeConfiguration,
+                specFlowConfiguration,
                 bindingRegistry,
                 unitTestRuntimeProvider,
                 stepDefinitionSkeletonProvider,
@@ -114,7 +114,7 @@ namespace Ghpr.SpecFlowPlugin
                 className = string.Join(".", names);
                 var fullName = $"{className}.{_currentFeatureInfo.Title}.{testName}";
                 var name = scenarioInfo.Title;
-                var guid = GuidConverter.ToMd5HashGuid(fullName).ToString();
+                var guid = GuidConverter.ToMd5HashGuid(TestContext.CurrentContext.Test.FullName).ToString();
                 _currentTestRun = new TestRun(guid, name, fullName)
                 {
                     Categories = scenarioInfo.Tags
@@ -134,7 +134,8 @@ namespace Ghpr.SpecFlowPlugin
                 _currentTestRun.Result = te == null ? "Passed" : (te is AssertionException ? "Failed" : "Error");
                 _currentTestRun.TestMessage = te?.Message ?? "";
                 _currentTestRun.TestStackTrace = te?.StackTrace ?? "";
-                _currentTestRun.Screenshots = ScreenHelper.GetScreenshots();
+                _currentTestRun.Screenshots.AddRange(ScreenHelper.GetScreenshots()
+                    .Where(s => !_currentTestRun.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
                 ReporterManager.TestFinished(_currentTestRun);
                 _engine.OnScenarioEnd();
                 //OutputHelper.Flush();

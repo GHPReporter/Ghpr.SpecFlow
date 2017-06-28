@@ -45,9 +45,10 @@ namespace Ghpr.SpecFlowPlugin
             while (TestContext.CurrentContext.Test.Properties.Get(screenKey) != null)
             {
                 var screenshotName = TestContext.CurrentContext.Test.Properties.Get(screenKey).ToString();
+                screenshots.Add(new TestScreenshot(screenshotName));
+
                 count++;
                 screenKey = GetScreenKey(count);
-                screenshots.Add(new TestScreenshot(screenshotName));
             }
 
             return screenshots;
