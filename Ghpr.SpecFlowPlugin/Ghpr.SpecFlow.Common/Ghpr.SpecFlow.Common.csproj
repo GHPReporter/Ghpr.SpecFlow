@@ -82,6 +82,9 @@
     <None Include="app.config" />
     <None Include="Ghpr.Core.Settings.json" />
     <None Include="Ghpr.SpecFlow.Common.nuspec" />
+    <None Include="Ghpr.SpecFlow.Settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
