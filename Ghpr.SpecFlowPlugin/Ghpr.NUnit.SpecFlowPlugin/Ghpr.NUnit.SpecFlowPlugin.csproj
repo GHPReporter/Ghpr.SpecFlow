@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GhprNUnitSpecFlowScreenHelper.cs" />
-    <Compile Include="Plugin.cs" />
+    <Compile Include="GhprNUnitSpecFlowPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GhprNUnitSpecFlowHelper.cs" />
   </ItemGroup>

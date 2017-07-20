@@ -36,4 +36,4 @@ using TechTalk.SpecFlow.Plugins;
 [assembly: AssemblyVersion("0.5.0.3")]
 [assembly: AssemblyFileVersion("0.5.0.3")]
 
-[assembly: RuntimePlugin(typeof(Plugin))]
+[assembly: RuntimePlugin(typeof(GhprNUnitSpecFlowPlugin))]
