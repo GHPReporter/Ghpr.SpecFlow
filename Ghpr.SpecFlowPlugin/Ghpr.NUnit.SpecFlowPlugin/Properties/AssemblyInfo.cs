@@ -1,16 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using Ghpr.SpecFlowPlugin;
+using Ghpr.NUnit.SpecFlowPlugin;
 using TechTalk.SpecFlow.Plugins;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghpr.SpecFlowPlugin")]
+[assembly: AssemblyTitle("Ghpr.NUnit.SpecFlowPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("Ghpr.SpecFlowPlugin")]
+[assembly: AssemblyProduct("Ghpr.NUnit.SpecFlowPlugin")]
 [assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using TechTalk.SpecFlow.Plugins;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("84e12915-13cb-4150-8f87-b6ddfdddfb46")]
+[assembly: Guid("d8f3ef6a-92a7-4a3d-b89b-4fc4cd7c8206")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -36,4 +36,4 @@ using TechTalk.SpecFlow.Plugins;
 [assembly: AssemblyVersion("0.5.0.3")]
 [assembly: AssemblyFileVersion("0.5.0.3")]
 
-[assembly: RuntimePlugin(typeof(GhprPlugin))]
+[assembly: RuntimePlugin(typeof(Plugin))]

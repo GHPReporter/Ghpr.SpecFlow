@@ -107,7 +107,8 @@ namespace Ghpr.SpecFlow.Common
             lock (Lock)
             {
                 var te = _engine.ScenarioContext?.TestError;
-                _currentTestRun = TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(_currentTestRun, te);
+                var testOutput = _outputWriter.GetOutput();
+                _currentTestRun = TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(_currentTestRun, te, testOutput);
                 ReporterManager.TestFinished(_currentTestRun);
                 _engine.OnScenarioEnd();
                 _outputWriter.Flush();

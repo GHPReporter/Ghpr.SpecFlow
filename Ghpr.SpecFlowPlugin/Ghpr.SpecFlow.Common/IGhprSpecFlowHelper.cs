@@ -9,6 +9,6 @@ namespace Ghpr.SpecFlow.Common
         IGhprSpecFlowScreenHelper ScreenHelper { get; }
 
         ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si);
-        ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError);
+        ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput);
     }
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.SpecFlowPlugin", "Ghpr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.SpecFlow.Common", "Ghpr.SpecFlow.Common\Ghpr.SpecFlow.Common.csproj", "{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.NUnit.SpecFlowPlugin", "Ghpr.NUnit.SpecFlowPlugin\Ghpr.NUnit.SpecFlowPlugin.csproj", "{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

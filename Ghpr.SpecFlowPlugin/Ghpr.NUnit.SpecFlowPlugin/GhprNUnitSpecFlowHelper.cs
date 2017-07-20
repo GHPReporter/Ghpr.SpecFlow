@@ -1,0 +1,52 @@
+﻿using System;
+using System.Linq;
+using Ghpr.Core.Common;
+using Ghpr.Core.Interfaces;
+using Ghpr.Core.Utils;
+using Ghpr.SpecFlow.Common;
+using NUnit.Framework;
+using TechTalk.SpecFlow;
+
+namespace Ghpr.NUnit.SpecFlowPlugin
+{
+    public class GhprNUnitSpecFlowHelper : IGhprSpecFlowHelper
+    {
+        public GhprNUnitSpecFlowHelper()
+        {
+            ScreenHelper = new GhprNUnitSpecFlowScreenHelper();
+        }
+
+        public IGhprSpecFlowScreenHelper ScreenHelper { get ; }
+
+        public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si)
+        {
+            var className = TestContext.CurrentContext.Test.ClassName;
+            var testName = TestContext.CurrentContext.Test.Name;
+            var names = className.Split('.').ToList();
+            if (names.Count >= 2)
+            {
+                names.RemoveAt(names.Count - 1);
+            }
+            className = string.Join(".", names);
+            var fullName = $"{className}.{fi.Title}.{testName}";
+            var name = si.Title;
+            var guid = GuidConverter.ToMd5HashGuid(TestContext.CurrentContext.Test.FullName).ToString();
+            var testRun = new TestRun(guid, name, fullName)
+            {
+                Categories = si.Tags
+            };
+            return testRun;
+        }
+
+        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput)
+        {
+            tr.Output = testOutput;
+            tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
+            tr.TestMessage = testError?.Message ?? "";
+            tr.TestStackTrace = testError?.StackTrace ?? "";
+            tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
+                .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
+            return tr;
+        }
+    }
+}
