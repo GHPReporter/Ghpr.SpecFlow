@@ -44,7 +44,7 @@
     - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin.csproj" -Prop Configuration=Release
+    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin.csproj" -Prop Configuration=Release
 
   artifacts:
     - path: '*.nupkg'
@@ -68,8 +68,8 @@
         
 -
   branches:
-    except:
-    - nuget
+    only:
+    - master
     
   before_build:
     - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
