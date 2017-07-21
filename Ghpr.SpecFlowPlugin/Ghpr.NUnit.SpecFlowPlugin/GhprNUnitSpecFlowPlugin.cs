@@ -10,8 +10,11 @@ using TechTalk.SpecFlow.Tracing;
 
 namespace Ghpr.NUnit.SpecFlowPlugin
 {
-    public class Plugin : IRuntimePlugin
+    public class GhprNUnitSpecFlowPlugin : IRuntimePlugin
     {
+        public static IGhprSpecFlowScreenHelper ScreenHelper => 
+            GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper;
+
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
             ReporterManager.Initialize(TestingFramework.SpecFlow);
