@@ -6,11 +6,11 @@ using TechTalk.SpecFlow.Plugins;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GhprNUnit.SpecFlowPlugin")]
+[assembly: AssemblyTitle("Ghpr.NUnit.SpecFlowPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("GhprNUnit.SpecFlowPlugin")]
+[assembly: AssemblyProduct("Ghpr.NUnit.SpecFlowPlugin")]
 [assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GhprSpecFlow.Common")]
+[assembly: AssemblyTitle("Ghpr.SpecFlow.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("GhprSpecFlow.Common")]
+[assembly: AssemblyProduct("Ghpr.SpecFlow.Common")]
 [assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
