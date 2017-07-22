@@ -1,14 +1,13 @@
 ﻿using Ghpr.Core;
 using Ghpr.Core.Enums;
 using Ghpr.Core.Utils;
-using Ghpr.SpecFlow.Common;
-using Ghpr.SpecFlowPlugin;
+using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 using TechTalk.SpecFlow.Tracing;
 
-namespace Ghpr.NUnit.SpecFlowPlugin
+namespace GhprNUnit.SpecFlowPlugin
 {
     public class GhprNUnitSpecFlowPlugin : IRuntimePlugin
     {

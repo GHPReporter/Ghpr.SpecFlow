@@ -3,7 +3,7 @@ using BoDi;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Tracing;
 
-namespace Ghpr.SpecFlowPlugin
+namespace GhprSpecFlow.Common
 {
     public class GhprTraceListener : ITraceListener
     {

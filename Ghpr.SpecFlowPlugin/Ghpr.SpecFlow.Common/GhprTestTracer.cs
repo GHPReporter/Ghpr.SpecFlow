@@ -6,7 +6,7 @@ using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.Bindings.Reflection;
 using TechTalk.SpecFlow.Tracing;
 
-namespace Ghpr.SpecFlowPlugin
+namespace GhprSpecFlow.Common
 {
     public class GhprTestTracer : ITestTracer
     {

@@ -2,7 +2,7 @@
 using Ghpr.Core.Interfaces;
 using TechTalk.SpecFlow;
 
-namespace Ghpr.SpecFlow.Common
+namespace GhprSpecFlow.Common
 {
     public interface IGhprSpecFlowHelper
     {

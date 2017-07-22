@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using Ghpr.NUnit.SpecFlowPlugin;
+using GhprNUnit.SpecFlowPlugin;
 using TechTalk.SpecFlow.Plugins;
 
 // General Information about an assembly is controlled through the following 

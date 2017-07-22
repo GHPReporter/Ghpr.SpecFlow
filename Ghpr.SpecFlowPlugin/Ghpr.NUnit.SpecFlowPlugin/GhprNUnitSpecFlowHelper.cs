@@ -3,11 +3,11 @@ using System.Linq;
 using Ghpr.Core.Common;
 using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
-using Ghpr.SpecFlow.Common;
+using GhprSpecFlow.Common;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace Ghpr.NUnit.SpecFlowPlugin
+namespace GhprNUnit.SpecFlowPlugin
 {
     public class GhprNUnitSpecFlowHelper : IGhprSpecFlowHelper
     {

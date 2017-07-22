@@ -1,8 +1,7 @@
-﻿using Ghpr.SpecFlow.Common;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 
-namespace Ghpr.SpecFlowPlugin
+namespace GhprSpecFlow.Common
 {
     public class GhprTestRunner : ITestRunner
     {

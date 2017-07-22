@@ -6,10 +6,10 @@ using Ghpr.Core.Common;
 using Ghpr.Core.Helpers;
 using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
-using Ghpr.SpecFlow.Common;
+using GhprSpecFlow.Common;
 using NUnit.Framework;
 
-namespace Ghpr.NUnit.SpecFlowPlugin
+namespace GhprNUnit.SpecFlowPlugin
 {
     public class GhprNUnitSpecFlowScreenHelper : IGhprSpecFlowScreenHelper
     {
