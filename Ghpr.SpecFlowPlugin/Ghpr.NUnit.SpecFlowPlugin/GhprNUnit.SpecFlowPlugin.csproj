@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GhprNUnit.SpecFlowPlugin</RootNamespace>
-    <AssemblyName>GhprNUnit.SpecFlowPlugin</AssemblyName>
+    <AssemblyName>Ghpr.NUnit.SpecFlowPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

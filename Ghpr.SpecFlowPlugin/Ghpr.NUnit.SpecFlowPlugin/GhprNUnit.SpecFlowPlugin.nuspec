@@ -23,6 +23,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\GhprNUnit.SpecFlowPlugin.dll" target="lib" />
+    <file src="bin\Release\Ghpr.NUnit.SpecFlowPlugin.dll" target="lib" />
   </files>
 </package>

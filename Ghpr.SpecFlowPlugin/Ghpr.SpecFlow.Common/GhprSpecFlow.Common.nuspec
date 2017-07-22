@@ -21,7 +21,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\GhprSpecFlow.Common.dll" target="lib" />
+    <file src="bin\Release\Ghpr.SpecFlow.Common.dll" target="lib" />
     <file src="bin\Release\Ghpr.SpecFlow.Settings.json" target="content" />
   </files>
 </package>
