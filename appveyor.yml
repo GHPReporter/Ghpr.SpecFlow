@@ -44,7 +44,7 @@
     - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlow.Common/Ghpr.SpecFlow.Common.csproj" -Prop Configuration=Release
+    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlow.Common/GhprSpecFlow.Common.csproj" -Prop Configuration=Release
 
   artifacts:
     - path: '*.nupkg'
@@ -78,7 +78,7 @@
     - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/GhprNUnit.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
 
   artifacts:
     - path: '*.nupkg'
