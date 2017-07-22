@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GhprSpecFlow.Common</RootNamespace>
-    <AssemblyName>GhprSpecFlow.Common</AssemblyName>
+    <AssemblyName>Ghpr.SpecFlow.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
