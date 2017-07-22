@@ -1,4 +1,4 @@
-﻿namespace Ghpr.SpecFlow.Common
+﻿namespace GhprSpecFlow.Common
 {
     public static class GhprPluginHelper
     {

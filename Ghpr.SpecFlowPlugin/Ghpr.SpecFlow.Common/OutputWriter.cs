@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using Ghpr.SpecFlow.Common;
 using TechTalk.SpecFlow;
 
-namespace Ghpr.SpecFlowPlugin
+namespace GhprSpecFlow.Common
 {
     public class OutputWriter
     {

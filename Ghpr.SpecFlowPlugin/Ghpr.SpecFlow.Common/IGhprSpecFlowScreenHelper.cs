@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ghpr.Core.Interfaces;
 
-namespace Ghpr.SpecFlow.Common
+namespace GhprSpecFlow.Common
 {
     public interface IGhprSpecFlowScreenHelper
     {
