@@ -10,19 +10,18 @@
     <projectUrl>https://github.com/GHPReporter/Ghpr.SpecFlow</projectUrl>
     <iconUrl>https://github.com/GHPReporter/GHPReporter.github.io/blob/master/img/logo-small.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Easy-to-use test run reporter for SpecFlow</description>
+    <description>Common code for Ghpr SpecFlow plugins</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright Evgeniy Kosjakov © 2016-2017</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow</tags>
     <dependencies>
       <dependency id="Ghpr.Core" version="0.5.0.3" />
-      <dependency id="Ghpr.SpecFlow.Common" version="0.5.0.4" />
-      <dependency id="NUnit" version="3.7.1" />
       <dependency id="SpecFlow" version="2.2.0" />
       <dependency id="SpecFlow.CustomPlugin" version="2.2.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Ghpr.NUnit.SpecFlowPlugin.dll" target="lib" />
+    <file src="bin\Release\GhprSpecFlow.Common.dll" target="lib" />
+    <file src="bin\Release\Ghpr.SpecFlow.Settings.json" target="content" />
   </files>
 </package>
