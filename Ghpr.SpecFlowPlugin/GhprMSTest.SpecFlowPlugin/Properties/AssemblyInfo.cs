@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using GhprMSTest.SpecFlowPlugin;
+using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 
 // General Information about an assembly is controlled through the following 
@@ -37,3 +38,4 @@ using TechTalk.SpecFlow.Plugins;
 [assembly: AssemblyFileVersion("0.5.0.7")]
 
 [assembly: RuntimePlugin(typeof(GhprMSTestSpecFlowPlugin))]
+[assembly: GeneratorPlugin(typeof(GhprMSTestSpecFlowPlugin))]
