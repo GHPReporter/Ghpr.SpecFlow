@@ -80,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="app.config.transform">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Ghpr.Core.Settings.json" />
     <None Include="GhprNUnit.SpecFlowPlugin.nuspec" />
     <None Include="packages.config" />
