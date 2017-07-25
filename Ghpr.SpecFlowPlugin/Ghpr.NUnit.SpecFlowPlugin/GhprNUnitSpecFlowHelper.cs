@@ -18,7 +18,7 @@ namespace GhprNUnit.SpecFlowPlugin
 
         public IGhprSpecFlowScreenHelper ScreenHelper { get ; }
 
-        public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si)
+        public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var className = TestContext.CurrentContext.Test.ClassName;
             var testName = TestContext.CurrentContext.Test.Name;
@@ -38,7 +38,7 @@ namespace GhprNUnit.SpecFlowPlugin
             return testRun;
         }
 
-        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput)
+        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc)
         {
             tr.Output = testOutput;
             tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
