@@ -17,14 +17,21 @@ namespace GhprMSTest.SpecFlowPlugin
             ScreenHelper = new GhprMSTestSpecFlowScreenHelper();            
         }
 
-        public IGhprSpecFlowScreenHelper ScreenHelper { get; }
+        public static string GetFullNameForGuid(TestContext tc)
+        {
+            return tc?.FullyQualifiedTestClassName + "." + tc?.TestName;
+        }
 
+        public IGhprSpecFlowScreenHelper ScreenHelper { get; private set; }
+        
         public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var tc = sc["TestContext"] as TestContext;
+            ScreenHelper = new GhprMSTestSpecFlowScreenHelper(tc);
+
             var fullName = $"{tc?.FullyQualifiedTestClassName}.{fi.Title}.{si.Title}";
             var name = si.Title;
-            var guid = GuidConverter.ToMd5HashGuid("test full name").ToString();
+            var guid = GuidConverter.ToMd5HashGuid(GetFullNameForGuid(tc)).ToString();
             var testRun = new TestRun(guid, name, fullName)
             {
                 Categories = si.Tags
