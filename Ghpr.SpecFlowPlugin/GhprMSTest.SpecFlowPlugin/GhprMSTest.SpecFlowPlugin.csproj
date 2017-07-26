@@ -38,6 +38,10 @@
       <HintPath>..\packages\Ghpr.Core.0.5.0.8\lib\net452\Ghpr.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ghpr.MSTest.TestContext.SpecFlowPlugin, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ghpr.MSTest.TestContext.SpecFlowPlugin.0.5.1\lib\net452\Ghpr.MSTest.TestContext.SpecFlowPlugin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -88,10 +92,6 @@
     <ProjectReference Include="..\Ghpr.SpecFlow.Common\GhprSpecFlow.Common.csproj">
       <Project>{adb6c69e-30a9-4d7f-8c5e-64daaa9fdca7}</Project>
       <Name>GhprSpecFlow.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GhprMSTestContext.SpecFlowPlugin\GhprMSTestTestContext.SpecFlowPlugin.csproj">
-      <Project>{c947bbb6-7abf-4c10-82a4-0b53ab2308d3}</Project>
-      <Name>GhprMSTestTestContext.SpecFlowPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
