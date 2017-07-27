@@ -91,13 +91,13 @@ namespace GhprSpecFlow.Common
         {
             lock (Lock)
             {
+                _engine.OnScenarioStart(scenarioInfo);
                 _outputWriter = new OutputWriter();
                 _outputWriter.WriteFeature(_currentFeatureInfo);
                 _outputWriter.WriteScenario(scenarioInfo);
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_currentFeatureInfo, 
                     scenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
                 ReporterManager.TestStarted(_currentTestRun);
-                _engine.OnScenarioStart(scenarioInfo);
             }
         }
 

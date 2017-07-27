@@ -7,7 +7,7 @@ namespace GhprSpecFlow.Common
     {
         private readonly ITestRunner _runner;
         private readonly ITestExecutionEngine _engine;
-
+        
         public GhprTestRunner(ITestExecutionEngine engine)
         {
             _runner = new TestRunner(engine);

@@ -26,7 +26,7 @@ namespace GhprMSTest.SpecFlowPlugin
         
         public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
-            var tc = sc["TestContext"] as TestContext;
+            var tc = sc.ContainsKey("TestContext") ? (sc["TestContext"] as TestContext) : null;
             ScreenHelper = new GhprMSTestSpecFlowScreenHelper(tc);
 
             var fullName = $"{tc?.FullyQualifiedTestClassName}.{fi.Title}.{si.Title}";

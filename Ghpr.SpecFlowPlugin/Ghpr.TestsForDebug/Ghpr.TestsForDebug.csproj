@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}</ProjectGuid>
+    <ProjectGuid>{5A364047-FD18-4072-A5AB-8FBCC59A5DED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GhprSpecFlow.Common</RootNamespace>
-    <AssemblyName>Ghpr.SpecFlow.Common</AssemblyName>
+    <RootNamespace>Ghpr.TestsForDebug</RootNamespace>
+    <AssemblyName>Ghpr.TestsForDebug</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.CustomPlugin.2.2.0\lib\net45\Gherkin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ghpr.Core, Version=0.5.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghpr.Core.0.5.0.8\lib\net452\Ghpr.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -54,38 +47,48 @@
       <HintPath>..\packages\SpecFlow.2.2.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TechTalk.SpecFlow.Generator, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.CustomPlugin.2.2.0\lib\net45\TechTalk.SpecFlow.Generator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TechTalk.SpecFlow.Parser, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.CustomPlugin.2.2.0\lib\net45\TechTalk.SpecFlow.Parser.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TechTalk.SpecFlow.Utils, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.CustomPlugin.2.2.0\lib\net45\TechTalk.SpecFlow.Utils.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GhprPluginHelper.cs" />
-    <Compile Include="GhprTestExecutionEngine.cs" />
-    <Compile Include="GhprTestRunner.cs" />
-    <Compile Include="GhprTestTracer.cs" />
-    <Compile Include="GhprTraceListener.cs" />
-    <Compile Include="IGhprSpecFlowHelper.cs" />
-    <Compile Include="IGhprSpecFlowScreenHelper.cs" />
-    <Compile Include="OutputWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Test.feature</DependentUpon>
+    </Compile>
+    <Compile Include="TestSteps.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Ghpr.Core.Settings.json" />
-    <None Include="GhprSpecFlow.Common.nuspec" />
-    <None Include="Ghpr.SpecFlow.Settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Test.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Test.feature.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj">
+      <Project>{d8f3ef6a-92a7-4a3d-b89b-4fc4cd7c8206}</Project>
+      <Name>GhprNUnit.SpecFlowPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ghpr.SpecFlow.Common\GhprSpecFlow.Common.csproj">
+      <Project>{adb6c69e-30a9-4d7f-8c5e-64daaa9fdca7}</Project>
+      <Name>GhprSpecFlow.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ghpr.SpecFlowPlugin\Ghpr.SpecFlowPlugin.csproj">
+      <Project>{84e12915-13cb-4150-8f87-b6ddfdddfb46}</Project>
+      <Name>Ghpr.SpecFlowPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhprMSTest.SpecFlowPlugin\GhprMSTest.SpecFlowPlugin.csproj">
+      <Project>{e3c92b3b-4e07-413a-b3dd-5614c1d6f736}</Project>
+      <Name>GhprMSTest.SpecFlowPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhprMSTestContext.SpecFlowPlugin\GhprMSTestTestContext.SpecFlowPlugin.csproj">
+      <Project>{c947bbb6-7abf-4c10-82a4-0b53ab2308d3}</Project>
+      <Name>GhprMSTestTestContext.SpecFlowPlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

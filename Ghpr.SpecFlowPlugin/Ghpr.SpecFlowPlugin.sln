@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprMSTest.SpecFlowPlugin",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprMSTestTestContext.SpecFlowPlugin", "GhprMSTestContext.SpecFlowPlugin\GhprMSTestTestContext.SpecFlowPlugin.csproj", "{C947BBB6-7ABF-4C10-82A4-0B53AB2308D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug", "Ghpr.TestsForDebug\Ghpr.TestsForDebug.csproj", "{5A364047-FD18-4072-A5AB-8FBCC59A5DED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C947BBB6-7ABF-4C10-82A4-0B53AB2308D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C947BBB6-7ABF-4C10-82A4-0B53AB2308D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C947BBB6-7ABF-4C10-82A4-0B53AB2308D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
