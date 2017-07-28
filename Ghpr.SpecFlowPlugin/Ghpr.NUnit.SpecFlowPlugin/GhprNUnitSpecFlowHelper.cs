@@ -48,5 +48,25 @@ namespace GhprNUnit.SpecFlowPlugin
                 .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
             return tr;
         }
+        
+        public void OnGiven(ScenarioContext sc)
+        {
+        }
+
+        public void OnWhen(ScenarioContext sc)
+        {
+        }
+
+        public void OnAnd(ScenarioContext sc)
+        {
+        }
+
+        public void OnBut(ScenarioContext sc)
+        {
+        }
+
+        public void OnThen(ScenarioContext sc)
+        {
+        }
     }
 }

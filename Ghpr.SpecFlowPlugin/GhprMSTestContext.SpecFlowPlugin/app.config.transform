@@ -2,7 +2,7 @@
 <configuration>
   <specFlow>
     <plugins>
-	  <add name="Ghpr.NUnit" type="Runtime"/>
+	    <add name="Ghpr.MSTest.TestContext" type="Generator" />
     </plugins>
   </specFlow>
 </configuration>

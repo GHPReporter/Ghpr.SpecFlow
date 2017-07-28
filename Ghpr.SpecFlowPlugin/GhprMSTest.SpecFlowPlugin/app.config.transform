@@ -1,9 +1,8 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <specFlow>
     <plugins>
-      <add name="Ghpr.MSTest" type="Generator" />
-	  <add name="Ghpr.MSTest" type="Runtime" />
+	    <add name="Ghpr.MSTest" type="Runtime" />
     </plugins>
   </specFlow>
 </configuration>
