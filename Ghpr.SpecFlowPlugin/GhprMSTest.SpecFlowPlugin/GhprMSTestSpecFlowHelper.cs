@@ -58,18 +58,22 @@ namespace GhprMSTest.SpecFlowPlugin
 
         public void OnWhen(ScenarioContext sc)
         {
+            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnAnd(ScenarioContext sc)
         {
+            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnBut(ScenarioContext sc)
         {
+            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnThen(ScenarioContext sc)
         {
+            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
         }
     }
 }
