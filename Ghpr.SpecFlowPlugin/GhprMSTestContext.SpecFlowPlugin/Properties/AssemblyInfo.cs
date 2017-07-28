@@ -1,14 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using GhprMSTestTestContext.SpecFlowPlugin;
+using TechTalk.SpecFlow.Infrastructure;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghpr.SpecFlow.Common")]
+[assembly: AssemblyTitle("Ghpr.MSTest.TestContext.SpecFlowPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("Ghpr.SpecFlow.Common")]
+[assembly: AssemblyProduct("Ghpr.MSTest.TestContext.SpecFlowPlugin")]
 [assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("adb6c69e-30a9-4d7f-8c5e-64daaa9fdca7")]
+[assembly: Guid("c947bbb6-7abf-4c10-82a4-0b53ab2308d3")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,3 +35,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.5.9.0")]
 [assembly: AssemblyFileVersion("0.5.9.0")]
+
+[assembly: GeneratorPlugin(typeof(GhprMSTestTestContextSpecFlowPlugin))]

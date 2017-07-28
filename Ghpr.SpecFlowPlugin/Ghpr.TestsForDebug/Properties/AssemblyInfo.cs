@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghpr.SpecFlow.Common")]
+[assembly: AssemblyTitle("Ghpr.TestsForDebug")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("Ghpr.SpecFlow.Common")]
-[assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
+[assembly: AssemblyCompany("EPAM Systems")]
+[assembly: AssemblyProduct("Ghpr.TestsForDebug")]
+[assembly: AssemblyCopyright("Copyright © EPAM Systems 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("adb6c69e-30a9-4d7f-8c5e-64daaa9fdca7")]
+[assembly: Guid("5a364047-fd18-4072-a5ab-8fbcc59a5ded")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.5.9.0")]
-[assembly: AssemblyFileVersion("0.5.9.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

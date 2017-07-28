@@ -10,5 +10,10 @@ namespace GhprSpecFlow.Common
 
         ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc);
         ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc);
+        void OnGiven(ScenarioContext sc);
+        void OnWhen(ScenarioContext sc);
+        void OnAnd(ScenarioContext sc);
+        void OnBut(ScenarioContext sc);
+        void OnThen(ScenarioContext sc);
     }
 }

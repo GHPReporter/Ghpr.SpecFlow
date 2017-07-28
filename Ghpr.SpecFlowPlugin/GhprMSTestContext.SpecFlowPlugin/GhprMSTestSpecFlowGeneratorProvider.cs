@@ -5,7 +5,7 @@ using TechTalk.SpecFlow.Generator;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Utils;
 
-namespace GhprMSTest.SpecFlowPlugin
+namespace GhprMSTestTestContext.SpecFlowPlugin
 {
     public class GhprMSTestSpecFlowGeneratorProvider : MsTest2010GeneratorProvider
     {

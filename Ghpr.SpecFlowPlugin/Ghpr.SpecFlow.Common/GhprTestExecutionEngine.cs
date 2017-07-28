@@ -91,12 +91,6 @@ namespace GhprSpecFlow.Common
         {
             lock (Lock)
             {
-                _outputWriter = new OutputWriter();
-                _outputWriter.WriteFeature(_currentFeatureInfo);
-                _outputWriter.WriteScenario(scenarioInfo);
-                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_currentFeatureInfo, 
-                    scenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
-                ReporterManager.TestStarted(_currentTestRun);
                 _engine.OnScenarioStart(scenarioInfo);
             }
         }
@@ -105,13 +99,7 @@ namespace GhprSpecFlow.Common
         {
             lock (Lock)
             {
-                var te = _engine.ScenarioContext?.TestError;
-                var testOutput = _outputWriter.GetOutput();
-                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(_currentTestRun, te, 
-                    testOutput, _engine.FeatureContext, _engine.ScenarioContext);
-                ReporterManager.TestFinished(_currentTestRun);
                 _engine.OnScenarioEnd();
-                _outputWriter.Flush();
             }
         }
 
@@ -124,7 +112,6 @@ namespace GhprSpecFlow.Common
             Table tableArg)
         {
             _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
-            _outputWriter.WriteStep(text);
         }
 
         public void Pending()
