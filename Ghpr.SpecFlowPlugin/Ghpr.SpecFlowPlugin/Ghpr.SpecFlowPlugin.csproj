@@ -38,10 +38,6 @@
       <HintPath>..\packages\Ghpr.Core.0.6.0\lib\net452\Ghpr.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ghpr.SpecFlow.Common, Version=0.5.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghpr.SpecFlow.Common.0.5.9\lib\net452\Ghpr.SpecFlow.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
