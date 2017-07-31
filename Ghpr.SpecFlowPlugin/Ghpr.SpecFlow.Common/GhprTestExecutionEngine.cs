@@ -15,9 +15,6 @@ namespace GhprSpecFlow.Common
     public class GhprTestExecutionEngine : ITestExecutionEngine
     {
         private readonly TestExecutionEngine _engine;
-        private FeatureInfo _currentFeatureInfo;
-        private ITestRun _currentTestRun;
-        private OutputWriter _outputWriter;
 
         public FeatureContext FeatureContext => _engine.FeatureContext;
         public ScenarioContext ScenarioContext => _engine.ScenarioContext;
@@ -74,7 +71,6 @@ namespace GhprSpecFlow.Common
         {
             lock (Lock)
             {
-                _currentFeatureInfo = featureInfo;
                 _engine.OnFeatureStart(featureInfo);
             }
         }
@@ -105,18 +101,27 @@ namespace GhprSpecFlow.Common
 
         public void OnAfterLastStep()
         {
-            _engine.OnAfterLastStep();
+            lock (Lock)
+            {
+                _engine.OnAfterLastStep();
+            }
         }
 
         public void Step(StepDefinitionKeyword stepDefinitionKeyword, string keyword, string text, string multilineTextArg,
             Table tableArg)
         {
-            _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
+            lock (Lock)
+            {
+                _engine.Step(stepDefinitionKeyword, keyword, text, multilineTextArg, tableArg);
+            }
         }
 
         public void Pending()
         {
-            _engine.Pending();
+            lock (Lock)
+            {
+                _engine.Pending();
+            }
         }
     }
 }
