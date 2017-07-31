@@ -56,7 +56,7 @@ namespace GhprSpecFlow.Common
                 _outputWriter = new OutputWriter();
                 _outputWriter.WriteFeature(_currentFeatureInfo);
                 _outputWriter.WriteScenario(scenarioInfo);
-                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_currentFeatureInfo,
+                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_runner, _currentFeatureInfo,
                     scenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
                 ReporterManager.TestStarted(_currentTestRun);
             }

@@ -33,7 +33,10 @@ namespace GhprMSTest.SpecFlowPlugin
 
         public void SetTestContext(TestContext testContext)
         {
-            _testContext = testContext;
+            if (testContext!= null)
+            {
+                _testContext = testContext;
+            }
         }
 
         public void SetContext(TestContext testContext, ScenarioContext sc, FeatureContext fc)
