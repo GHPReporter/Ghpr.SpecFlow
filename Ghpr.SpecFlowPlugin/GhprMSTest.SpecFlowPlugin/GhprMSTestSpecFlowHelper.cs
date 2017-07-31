@@ -38,11 +38,6 @@ namespace GhprMSTest.SpecFlowPlugin
             {
                 Categories = si.Tags
             };
-            StaticLog.Initialize(@"C:\_log");
-            StaticLog.Logger().Write($"1: {tc?.FullyQualifiedTestClassName}");
-            StaticLog.Logger().Write($"2: {tc?.TestName}");
-            StaticLog.Logger().Write($"3: {tc?.Properties.Count}");
-            StaticLog.Logger().Write($"4: {tc?.CurrentTestOutcome}");
             return testRun;
         }
 
@@ -51,10 +46,6 @@ namespace GhprMSTest.SpecFlowPlugin
             var tc = sc.TryGetTestContext();
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
             var guid = GuidConverter.ToMd5HashGuid(nameForGuid).ToString();
-            StaticLog.Logger().Write($"5: {tc?.FullyQualifiedTestClassName}");
-            StaticLog.Logger().Write($"6: {tc?.TestName}");
-            StaticLog.Logger().Write($"7: {tc?.Properties.Count}");
-            StaticLog.Logger().Write($"8: {tc?.CurrentTestOutcome}");
             tr.TestInfo.Guid = Guid.Parse(guid);
             tr.FullName = $"{sc.TryGetTestContext().FullyQualifiedTestClassName}.{fc.FeatureInfo.Title}.{sc.ScenarioInfo.Title}";
             tr.Output = testOutput;
