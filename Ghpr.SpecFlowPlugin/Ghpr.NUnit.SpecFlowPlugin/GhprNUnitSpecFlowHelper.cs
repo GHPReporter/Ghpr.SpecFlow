@@ -18,7 +18,7 @@ namespace GhprNUnit.SpecFlowPlugin
 
         public IGhprSpecFlowScreenHelper ScreenHelper { get ; }
 
-        public ITestRun GetTestRunOnScenarioStart(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var className = TestContext.CurrentContext.Test.ClassName;
             var testName = TestContext.CurrentContext.Test.Name;
