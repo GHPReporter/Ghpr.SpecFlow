@@ -8,12 +8,11 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void SaveScreenshot(byte[] screenBytes)
         {
-            throw new System.NotImplementedException();
         }
 
         public List<ITestScreenshot> GetScreenshots()
         {
-            throw new System.NotImplementedException();
+            return new List<ITestScreenshot>();
         }
     }
 }
