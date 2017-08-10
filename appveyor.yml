@@ -34,8 +34,144 @@
         
 -
   branches:
-    except:
-    - nuget
+    only:
+    - nuget-common
+    
+  before_build:
+    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+
+  build_script: 
+    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+
+  after_build:
+    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlow.Common/GhprSpecFlow.Common.csproj" -Prop Configuration=Release
+
+  artifacts:
+    - path: '*.nupkg'
+      name: nupkg
+
+  deploy:
+    provider: NuGet
+    server: 
+    api_key:
+      secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
+    skip_symbols: false
+    artifact: nupkg
+ 
+  test:
+    assemblies:
+      - '**\*TestsExample.dll'
+      - '**\*TestsExample2.dll'
+    categories:
+      only:
+        - SuccessCategory
+        
+-
+  branches:
+    only:
+    - nuget-nunit
+    
+  before_build:
+    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+
+  build_script: 
+    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+
+  after_build:
+    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/GhprNUnit.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+
+  artifacts:
+    - path: '*.nupkg'
+      name: nupkg
+
+  deploy:
+    provider: NuGet
+    server: 
+    api_key:
+      secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
+    skip_symbols: false
+    artifact: nupkg
+ 
+  test:
+    assemblies:
+      - '**\*TestsExample.dll'
+      - '**\*TestsExample2.dll'
+    categories:
+      only:
+        - SuccessCategory
+        
+-
+  branches:
+    only:
+    - nuget-mstest
+    
+  before_build:
+    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+
+  build_script: 
+    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+
+  after_build:
+    - nuget pack "Ghpr.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+
+  artifacts:
+    - path: '*.nupkg'
+      name: nupkg
+
+  deploy:
+    provider: NuGet
+    server: 
+    api_key:
+      secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
+    skip_symbols: false
+    artifact: nupkg
+ 
+  test:
+    assemblies:
+      - '**\*TestsExample.dll'
+      - '**\*TestsExample2.dll'
+    categories:
+      only:
+        - SuccessCategory        
+             
+-
+  branches:
+    only:
+    - nuget-mstest-testcontext
+    
+  before_build:
+    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+
+  build_script: 
+    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+
+  after_build:
+    - nuget pack "Ghpr.SpecFlowPlugin/GhprMSTestContext.SpecFlowPlugin/GhprMSTestTestContext.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+
+  artifacts:
+    - path: '*.nupkg'
+      name: nupkg
+
+  deploy:
+    provider: NuGet
+    server: 
+    api_key:
+      secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
+    skip_symbols: false
+    artifact: nupkg
+ 
+  test:
+    assemblies:
+      - '**\*TestsExample.dll'
+      - '**\*TestsExample2.dll'
+    categories:
+      only:
+        - SuccessCategory        
+        
+-
+  branches:
+    only:
+    - master
     
   before_build:
     - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
