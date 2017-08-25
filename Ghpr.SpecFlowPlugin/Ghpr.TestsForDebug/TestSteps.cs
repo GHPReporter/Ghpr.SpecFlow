@@ -1,4 +1,6 @@
 ﻿using System;
+using GhprMSTest.SpecFlowPlugin;
+using GhprNUnit.SpecFlowPlugin;
 using TechTalk.SpecFlow;
 
 namespace Ghpr.TestsForDebug
@@ -11,12 +13,19 @@ namespace Ghpr.TestsForDebug
         {
             ScenarioContext.Current.Add(ScenarioContext.Current.ContainsKey("first") ? "second" : "first", p0);
         }
-        
+
         [When(@"I press add")]
         public void WhenIPressAdd()
         {
         }
-        
+
+        [When(@"I add test data")]
+        public void WhenIAddTestData()
+        {
+            //GhprMSTestSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
+            GhprNUnitSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
+        }
+
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
