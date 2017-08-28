@@ -14,9 +14,11 @@ namespace GhprNUnit.SpecFlowPlugin
         public GhprNUnitSpecFlowHelper()
         {
             ScreenHelper = new GhprNUnitSpecFlowScreenHelper();
+            TestDataHelper = new GhprNUnitSpecFlowTestDataHelper();
         }
 
         public IGhprSpecFlowScreenHelper ScreenHelper { get ; }
+        public IGhprSpecFlowTestDataHelper TestDataHelper { get; }
 
         public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
@@ -46,6 +48,7 @@ namespace GhprNUnit.SpecFlowPlugin
             tr.TestStackTrace = testError?.StackTrace ?? "";
             tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
                 .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
+            tr.TestData.AddRange(TestDataHelper.GetTestData());
             return tr;
         }
         

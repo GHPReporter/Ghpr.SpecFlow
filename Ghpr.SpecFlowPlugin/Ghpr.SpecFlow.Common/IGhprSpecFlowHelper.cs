@@ -7,6 +7,7 @@ namespace GhprSpecFlow.Common
     public interface IGhprSpecFlowHelper
     {
         IGhprSpecFlowScreenHelper ScreenHelper { get; }
+        IGhprSpecFlowTestDataHelper TestDataHelper { get; }
 
         ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc);
         ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc);
