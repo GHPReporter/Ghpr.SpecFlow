@@ -8,12 +8,14 @@ namespace Ghpr.SpecFlowPlugin
     {
         public void SaveScreenshot(byte[] screenBytes)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("This feature is not supported for Ghpr.SpecFlowPlugin. " +
+                                                     "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");
         }
 
         public List<ITestScreenshot> GetScreenshots()
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("This feature is not supported for Ghpr.SpecFlowPlugin. " +
+                                                     "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");
         }
     }
 }
