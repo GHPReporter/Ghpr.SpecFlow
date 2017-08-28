@@ -86,7 +86,9 @@
     <None Include="Ghpr.SpecFlow.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Ghpr.SpecFlow.Settings.json" />
+    <None Include="Ghpr.SpecFlow.Settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
