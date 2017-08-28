@@ -11,8 +11,10 @@ namespace GhprNUnit.SpecFlowPlugin
 {
     public class GhprNUnitSpecFlowPlugin : IRuntimePlugin
     {
-        public static IGhprSpecFlowScreenHelper ScreenHelper => 
+        public static IGhprSpecFlowScreenHelper ScreenHelper =>
             GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper;
+        public static IGhprSpecFlowTestDataHelper TestDataHelper =>
+            GhprPluginHelper.TestExecutionEngineHelper.TestDataHelper;
 
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {

@@ -4,15 +4,15 @@ using GhprSpecFlow.Common;
 
 namespace Ghpr.SpecFlowPlugin
 {
-    public class GhprSpecFlowScreenHelper : IGhprSpecFlowScreenHelper
+    public class GhprSpecFlowPluginTestDataHelper : IGhprSpecFlowTestDataHelper
     {
-        public void SaveScreenshot(byte[] screenBytes)
+        public void AddTestData(string actual, string expected, string comment)
         {
             throw new System.NotImplementedException("This feature is not supported for Ghpr.SpecFlowPlugin. " +
                                                      "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");
         }
 
-        public List<ITestScreenshot> GetScreenshots()
+        public List<ITestData> GetTestData()
         {
             throw new System.NotImplementedException("This feature is not supported for Ghpr.SpecFlowPlugin. " +
                                                      "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");
