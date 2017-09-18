@@ -43,7 +43,8 @@ namespace GhprNUnit.SpecFlowPlugin
         public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc)
         {
             tr.Output = testOutput;
-            tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
+            //tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
+            tr.Result = TestContext.CurrentContext.Result.Outcome.ToString();
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
             tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
