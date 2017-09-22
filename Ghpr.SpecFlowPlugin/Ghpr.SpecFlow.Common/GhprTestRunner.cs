@@ -52,8 +52,8 @@ namespace GhprSpecFlow.Common
         {
             lock (Lock)
             {
-                _runner.OnScenarioStart(scenarioInfo);
                 _outputWriter = new OutputWriter();
+                _runner.OnScenarioStart(scenarioInfo);
                 _outputWriter.WriteFeature(_currentFeatureInfo);
                 _outputWriter.WriteScenario(scenarioInfo);
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_runner, _currentFeatureInfo,

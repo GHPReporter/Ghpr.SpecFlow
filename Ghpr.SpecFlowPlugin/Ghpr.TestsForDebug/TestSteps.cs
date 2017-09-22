@@ -6,8 +6,20 @@ using TechTalk.SpecFlow;
 namespace Ghpr.TestsForDebug
 {
     [Binding]
-    public class TestSteps
+    public class TestSteps : Steps
     {
+        [Given(@"I have number (.*)")]
+        public void GivenIHaveNumber(int p0)
+        {
+            Console.WriteLine("I have the number" + p0);
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            Given($"I have number {10}");
+        }
+
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
