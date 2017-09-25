@@ -19,12 +19,12 @@ namespace GhprMSTestTestContext.SpecFlowPlugin
         public override void FinalizeTestClass(TestClassGenerationContext generationContext)
         {
             base.FinalizeTestClass(generationContext);
-            
-            generationContext.TestClass.Members.Add(new CodeMemberField
+
+            /*generationContext.TestClass.Members.Add(new CodeMemberField
             {
                 Attributes = MemberAttributes.Private | MemberAttributes.Final,
                 Name = TestContextPrivateFieldName,
-                Type = new CodeTypeReference(TESTCONTEXT_TYPE),
+                Type = new CodeTypeReference(TESTCONTEXT_TYPE)
             });
 
             var msTestContextProperty = new CodeMemberProperty
@@ -33,13 +33,13 @@ namespace GhprMSTestTestContext.SpecFlowPlugin
                 Type = new CodeTypeReference(TESTCONTEXT_TYPE),
                 Name = TestContextPublicPropertyName,
                 HasGet = true,
-                HasSet = true,
+                HasSet = true
             };
             var testContextReferenceExpr = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), TestContextPrivateFieldName);
             msTestContextProperty.GetStatements.Add(new CodeMethodReturnStatement(testContextReferenceExpr));
             msTestContextProperty.SetStatements.Add(new CodeAssignStatement(testContextReferenceExpr, new CodePropertySetValueReferenceExpression()));
-            generationContext.TestClass.Members.Add(msTestContextProperty);
-
+            generationContext.TestClass.Members.Add(msTestContextProperty);*/
+            
             var msTestContextScenarioInitStatement =
                 new CodeExpressionStatement(
                     new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("testRunner.ScenarioContext"),
