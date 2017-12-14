@@ -1,5 +1,6 @@
 ﻿using Ghpr.Core;
 using Ghpr.Core.Enums;
+using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
@@ -15,7 +16,7 @@ namespace GhprNUnit.SpecFlowPlugin
             GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper;
         public static IGhprSpecFlowTestDataHelper TestDataHelper =>
             GhprPluginHelper.TestExecutionEngineHelper.TestDataHelper;
-
+        
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
             ReporterManager.Initialize(TestingFramework.SpecFlow);

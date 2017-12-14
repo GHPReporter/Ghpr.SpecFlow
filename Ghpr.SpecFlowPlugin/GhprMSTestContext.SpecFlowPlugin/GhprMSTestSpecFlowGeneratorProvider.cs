@@ -39,7 +39,7 @@ namespace GhprMSTestTestContext.SpecFlowPlugin
             msTestContextProperty.GetStatements.Add(new CodeMethodReturnStatement(testContextReferenceExpr));
             msTestContextProperty.SetStatements.Add(new CodeAssignStatement(testContextReferenceExpr, new CodePropertySetValueReferenceExpression()));
             generationContext.TestClass.Members.Add(msTestContextProperty);*/
-            
+
             var msTestContextScenarioInitStatement =
                 new CodeExpressionStatement(
                     new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("testRunner.ScenarioContext"),
