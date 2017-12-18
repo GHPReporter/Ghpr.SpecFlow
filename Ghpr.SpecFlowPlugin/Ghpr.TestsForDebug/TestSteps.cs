@@ -1,5 +1,4 @@
 ﻿using System;
-using GhprMSTest.SpecFlowPlugin;
 using GhprNUnit.SpecFlowPlugin;
 using TechTalk.SpecFlow;
 
@@ -34,8 +33,8 @@ namespace Ghpr.TestsForDebug
         [When(@"I add test data")]
         public void WhenIAddTestData()
         {
-            GhprMSTestSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
-            //GhprNUnitSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
+            //GhprMSTestSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
+            GhprNUnitSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
         }
 
         [Then(@"the result should be (.*) on the screen")]
