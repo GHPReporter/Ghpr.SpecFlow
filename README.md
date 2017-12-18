@@ -18,12 +18,12 @@
 
 ## Usage:
 
- - Install latest nuget package
- - Add new plugin to your App.config file:
+ - Install latest nuget package. Use Ghpr.MSTest (if your tests are based on MSTest unit test provider) or Ghpr.NUnit (if NUnit is your unit test provider) plugin.
+ - Make sure your plugin is added into App.config file:
 
     ```xml
     <plugins>
-      <add name="Ghpr" type="Runtime" />
+      <add name="Ghpr.NUnit" type="Runtime" />
     </plugins>
     ```
     

@@ -13,9 +13,11 @@ namespace Ghpr.SpecFlowPlugin
         public GhprSpecFlowHelper()
         {
             ScreenHelper = new GhprSpecFlowScreenHelper();
+            TestDataHelper = new GhprSpecFlowPluginTestDataHelper();
         }
 
         public IGhprSpecFlowScreenHelper ScreenHelper { get; }
+        public IGhprSpecFlowTestDataHelper TestDataHelper { get; }
 
         public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc,
             ScenarioContext sc)
