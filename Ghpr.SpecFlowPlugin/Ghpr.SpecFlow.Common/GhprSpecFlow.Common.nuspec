@@ -15,9 +15,9 @@
     <copyright>Copyright Evgeniy Kosjakov © 2016-2017</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow</tags>
     <dependencies>
-      <dependency id="Ghpr.Core" version="0.7.0.0" />
-      <dependency id="SpecFlow" version="2.2.0" />
-      <dependency id="SpecFlow.CustomPlugin" version="2.2.0" />
+      <dependency id="Ghpr.Core" version="0.8.0.0" />
+      <dependency id="SpecFlow" version="2.2.1" />
+      <dependency id="SpecFlow.CustomPlugin" version="2.2.1" />
     </dependencies>
   </metadata>
   <files>
