@@ -15,7 +15,7 @@ namespace GhprNUnit.SpecFlowPlugin
             GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper;
         public static IGhprSpecFlowTestDataHelper TestDataHelper =>
             GhprPluginHelper.TestExecutionEngineHelper.TestDataHelper;
-
+        
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
             ReporterManager.Initialize(TestingFramework.SpecFlow);

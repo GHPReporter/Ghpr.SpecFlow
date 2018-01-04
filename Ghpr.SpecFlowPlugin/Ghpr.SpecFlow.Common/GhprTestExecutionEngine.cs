@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Ghpr.Core;
-using Ghpr.Core.Interfaces;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TechTalk.SpecFlow.BindingSkeletons;
