@@ -3,12 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Helpers;
 using Ghpr.Core.Interfaces;
-using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
