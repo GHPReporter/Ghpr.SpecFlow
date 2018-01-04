@@ -73,11 +73,12 @@ namespace GhprSpecFlow.Common
             {
                 var te = _engine.ScenarioContext?.TestError;
                 var testOutput = _outputWriter.GetOutput();
-                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(
-                    _currentTestRun, te,
-                    testOutput, _engine.FeatureContext, _engine.ScenarioContext);
-                ReporterManager.TestFinished(_currentTestRun);
+                var fc = _engine.FeatureContext;
+                var sc = _engine.ScenarioContext;
                 _runner.OnScenarioEnd();
+                _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(
+                    _currentTestRun, te, testOutput, fc, sc);
+                ReporterManager.TestFinished(_currentTestRun);
                 _outputWriter.Flush();
             }
         }
