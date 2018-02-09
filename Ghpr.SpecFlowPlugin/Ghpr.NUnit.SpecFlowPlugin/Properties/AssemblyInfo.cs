@@ -11,7 +11,7 @@ using TechTalk.SpecFlow.Plugins;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
 [assembly: AssemblyProduct("Ghpr.NUnit.SpecFlowPlugin")]
-[assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2017")]
+[assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +33,7 @@ using TechTalk.SpecFlow.Plugins;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.8.0.2")]
-[assembly: AssemblyFileVersion("0.8.0.2")]
+[assembly: AssemblyVersion("0.8.1.0")]
+[assembly: AssemblyFileVersion("0.8.1.0")]
 
 [assembly: RuntimePlugin(typeof(GhprNUnitSpecFlowPlugin))]
