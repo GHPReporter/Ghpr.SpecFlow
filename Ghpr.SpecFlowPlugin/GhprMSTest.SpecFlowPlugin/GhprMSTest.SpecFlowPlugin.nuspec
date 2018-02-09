@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Easy-to-use test run reporter for SpecFlow</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright Evgeniy Kosjakov © 2016 - 2018</copyright>
+    <copyright>Copyright Evgeniy Kosjakov © 2016-2018</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow</tags>
     <dependencies>
       <dependency id="Ghpr.Core" version="0.8.0.2" />
