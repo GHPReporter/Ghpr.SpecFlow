@@ -8,6 +8,7 @@ using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace GhprNUnit.SpecFlowPlugin
 {
@@ -22,13 +23,13 @@ namespace GhprNUnit.SpecFlowPlugin
             var screenshotName = ScreenshotHelper.SaveScreenshot(fullPath, screenBytes, DateTime.Now);
             var count = 0;
             var screenKey = ScreenshotHelper.GetScreenKey(count);
-            while (TestContext.CurrentContext.Test.Properties.Get(screenKey) != null)
+            while (TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(screenKey) != null)
             {
                 count++;
                 screenKey = ScreenshotHelper.GetScreenKey(count);
             }
 
-            TestContext.CurrentContext.Test.Properties.Add(screenKey, screenshotName);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Add(screenKey, screenshotName);
         }
 
         public List<ITestScreenshot> GetScreenshots()
@@ -36,9 +37,9 @@ namespace GhprNUnit.SpecFlowPlugin
             var screenshots = new List<ITestScreenshot>();
             var count = 0;
             var screenKey = ScreenshotHelper.GetScreenKey(count);
-            while (TestContext.CurrentContext.Test.Properties.Get(screenKey) != null)
+            while (TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(screenKey) != null)
             {
-                var screenshotName = TestContext.CurrentContext.Test.Properties.Get(screenKey).ToString();
+                var screenshotName = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(screenKey).ToString();
                 screenshots.Add(new TestScreenshot(screenshotName));
 
                 count++;
