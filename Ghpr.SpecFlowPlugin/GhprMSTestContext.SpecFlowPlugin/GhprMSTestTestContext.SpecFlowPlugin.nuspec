@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>package to inject MSTest TestContext into SpecFlow tests</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright Evgeniy Kosjakov © 2016 - 2018</copyright>
+    <copyright>Copyright Evgeniy Kosjakov © 2016-2018</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow MSTest</tags>
     <dependencies>
       <dependency id="SpecFlow" version="2.2.1" />

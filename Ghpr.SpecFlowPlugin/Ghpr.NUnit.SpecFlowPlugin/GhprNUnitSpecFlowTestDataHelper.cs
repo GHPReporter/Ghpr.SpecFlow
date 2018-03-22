@@ -6,6 +6,7 @@ using Ghpr.Core.Helpers;
 using Ghpr.Core.Interfaces;
 using GhprSpecFlow.Common;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace GhprNUnit.SpecFlowPlugin
 {
@@ -18,16 +19,16 @@ namespace GhprNUnit.SpecFlowPlugin
             var actualKey = TestDataHelper.GetTestDataActualKey(count);
             var expectedKey = TestDataHelper.GetTestDataExpectedKey(count);
             var commentKey = TestDataHelper.GetTestDataCommentKey(count);
-            while (TestContext.CurrentContext.Test.Properties.Get(dateTimeKey) != null)
+            while (TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(dateTimeKey) != null)
             {
                 count++;
                 dateTimeKey = ScreenshotHelper.GetScreenKey(count);
             }
 
-            TestContext.CurrentContext.Test.Properties.Add(dateTimeKey, DateTime.Now.ToString("yyyyMMdd_HHmmssfff"));
-            TestContext.CurrentContext.Test.Properties.Add(actualKey, actual);
-            TestContext.CurrentContext.Test.Properties.Add(expectedKey, expected);
-            TestContext.CurrentContext.Test.Properties.Add(commentKey, comment);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Add(dateTimeKey, DateTime.Now.ToString("yyyyMMdd_HHmmssfff"));
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Add(actualKey, actual);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Add(expectedKey, expected);
+            TestExecutionContext.CurrentContext.CurrentTest.Properties.Add(commentKey, comment);
         }
 
         public List<ITestData> GetTestData()
@@ -40,11 +41,11 @@ namespace GhprNUnit.SpecFlowPlugin
             var commentKey = TestDataHelper.GetTestDataCommentKey(count);
             while (TestContext.CurrentContext.Test.Properties.Get(dateTimeKey) != null)
             {
-                var dateTime = DateTime.ParseExact(TestContext.CurrentContext.Test.Properties.Get(dateTimeKey).ToString(), 
+                var dateTime = DateTime.ParseExact(TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(dateTimeKey).ToString(), 
                     "yyyyMMdd_HHmmssfff", CultureInfo.InvariantCulture);
-                var actual = TestContext.CurrentContext.Test.Properties.Get(actualKey).ToString();
-                var expected = TestContext.CurrentContext.Test.Properties.Get(expectedKey).ToString();
-                var comment = TestContext.CurrentContext.Test.Properties.Get(commentKey).ToString();
+                var actual = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(actualKey).ToString();
+                var expected = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(expectedKey).ToString();
+                var comment = TestExecutionContext.CurrentContext.CurrentTest.Properties.Get(commentKey).ToString();
                 testData.Add(new TestData
                 {
                     Actual = actual,
