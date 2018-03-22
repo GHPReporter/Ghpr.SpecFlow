@@ -17,8 +17,8 @@
     <dependencies>
       <dependency id="Ghpr.Core" version="0.8.0.2" />
       <dependency id="Ghpr.SpecFlow.Common" version="0.8.0.2" />
-      <dependency id="SpecFlow" version="2.2.1" />
-      <dependency id="SpecFlow.CustomPlugin" version="2.2.1" />
+      <dependency id="SpecFlow" version="2.3.1" />
+      <dependency id="SpecFlow.CustomPlugin" version="2.3.1" />
     </dependencies>
   </metadata>
   <files>
