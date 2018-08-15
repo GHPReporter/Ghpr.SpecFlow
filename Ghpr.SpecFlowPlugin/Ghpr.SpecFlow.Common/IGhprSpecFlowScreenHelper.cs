@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Ghpr.Core.Interfaces;
+using Ghpr.Core.Common;
 
 namespace GhprSpecFlow.Common
 {
     public interface IGhprSpecFlowScreenHelper
     {
         void SaveScreenshot(byte[] screenBytes);
-        List<ITestScreenshot> GetScreenshots();
+        IEnumerable<SimpleItemInfoDto> GetScreenshots();
     }
 }

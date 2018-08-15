@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Ghpr.Core.Interfaces;
+using Ghpr.Core.Common;
 
 namespace GhprSpecFlow.Common
 {
     public interface IGhprSpecFlowTestDataHelper
     {
         void AddTestData(string actual, string expected, string comment);
-        List<ITestData> GetTestData();
+        List<TestDataDto> GetTestData();
     }
 }

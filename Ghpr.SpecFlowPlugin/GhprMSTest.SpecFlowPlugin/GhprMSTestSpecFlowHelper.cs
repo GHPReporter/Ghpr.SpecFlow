@@ -2,8 +2,7 @@
 using System;
 using System.Linq;
 using Ghpr.Core.Common;
-using Ghpr.Core.Interfaces;
-using Ghpr.Core.Utils;
+using Ghpr.Core.Extensions;
 using GhprSpecFlow.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
@@ -27,7 +26,7 @@ namespace GhprMSTest.SpecFlowPlugin
         public IGhprSpecFlowScreenHelper ScreenHelper { get; private set; }
         public IGhprSpecFlowTestDataHelper TestDataHelper { get; private set; }
 
-        public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var tc = sc.TryGetTestContext();
             ScreenHelper = new GhprMSTestSpecFlowScreenHelper(tc, sc, fc);
@@ -36,27 +35,38 @@ namespace GhprMSTest.SpecFlowPlugin
             var fullName = $"{tc?.FullyQualifiedTestClassName}.{fi.Title}.{si.Title}";
             var name = si.Title;
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
-            var guid = GuidConverter.ToMd5HashGuid(nameForGuid).ToString();
-            var testRun = new TestRun(guid, name, fullName)
+            var guid = nameForGuid.ToMd5HashGuid().ToString();
+            var testRun = new TestRunDto(guid, name, fullName)
             {
                 Categories = si.Tags
             };
             return testRun;
         }
 
-        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc)
+        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc, 
+            out TestOutputDto testOutputDto)
         {
             var tc = sc.TryGetTestContext();
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
-            var guid = GuidConverter.ToMd5HashGuid(nameForGuid).ToString();
+            var guid = nameForGuid.ToMd5HashGuid().ToString();
             tr.TestInfo.Guid = Guid.Parse(guid);
             tr.FullName = $"{sc.TryGetTestContext().FullyQualifiedTestClassName}.{fc.FeatureInfo.Title}.{sc.ScenarioInfo.Title}";
-            tr.Output = testOutput;
+            testOutputDto = new TestOutputDto
+            {
+                Output = testOutput,
+                SuiteOutput = "",
+                TestOutputInfo = new SimpleItemInfoDto
+                {
+                    Date = tr.TestInfo.Finish,
+                    ItemName = "Test output"
+                }
+            };
+            tr.Output = testOutputDto.TestOutputInfo;
             tr.Result = testError == null ? "Passed" : (testError is AssertFailedException ? "Failed" : "Error");
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
             tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
-                .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
+                .Where(s => !tr.Screenshots.Any(cs => cs.ItemName.Equals(s.ItemName))));
             tr.TestData.AddRange(TestDataHelper.GetTestData());
             return tr;
         }

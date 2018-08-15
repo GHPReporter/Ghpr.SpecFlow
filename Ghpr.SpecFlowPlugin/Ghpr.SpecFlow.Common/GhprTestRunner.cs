@@ -1,5 +1,5 @@
 ﻿using Ghpr.Core;
-using Ghpr.Core.Interfaces;
+using Ghpr.Core.Common;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 
@@ -10,7 +10,7 @@ namespace GhprSpecFlow.Common
         private readonly ITestRunner _runner;
         private readonly ITestExecutionEngine _engine;
         private FeatureInfo _currentFeatureInfo;
-        private ITestRun _currentTestRun;
+        private TestRunDto _currentTestRun;
         private OutputWriter _outputWriter;
 
         private static readonly object Lock = new object();
@@ -76,9 +76,10 @@ namespace GhprSpecFlow.Common
                 var fc = _engine.FeatureContext;
                 var sc = _engine.ScenarioContext;
                 _runner.OnScenarioEnd();
+                TestOutputDto runOutput;
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(
-                    _currentTestRun, te, testOutput, fc, sc);
-                ReporterManager.TestFinished(_currentTestRun);
+                    _currentTestRun, te, testOutput, fc, sc, out runOutput);
+                ReporterManager.TestFinished(_currentTestRun, runOutput);
                 _outputWriter.Flush();
             }
         }
