@@ -57,8 +57,6 @@ namespace GhprNUnit.SpecFlowPlugin
             tr.Result = TestContext.CurrentContext.Result.Outcome.ToString();
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
-            tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
-                .Where(s => !tr.Screenshots.Any(cs => cs.ItemName.Equals(s.ItemName))));
             tr.TestData.AddRange(TestDataHelper.GetTestData());
             return tr;
         }

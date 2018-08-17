@@ -93,7 +93,7 @@ namespace Ghpr.TestsForDebug
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Warning)
             {
                 var bytes = TakeScreen();
-                        GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
+                GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
             }
             //switch ((ScenarioContext.Current["TestContext"] as TestContext)?.CurrentTestOutcome)
             //{

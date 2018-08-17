@@ -44,7 +44,6 @@ namespace Ghpr.SpecFlowPlugin
             tr.Result = testError == null ? "Passed" : "Failed";
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
-            tr.Screenshots.AddRange(ScreenHelper.GetScreenshots());
             return tr;
         }
         
