@@ -90,14 +90,15 @@ namespace Ghpr.TestsForDebug
         public static void WrapUpReport()
         {
             Console.WriteLine("After Scenario!");
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Warning)
-            {
-                var bytes = TakeScreen();
-                GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
-            }
-            //switch ((ScenarioContext.Current["TestContext"] as TestContext)?.CurrentTestOutcome)
+            //if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Warning)
+            //{
+            //    var bytes = TakeScreen();
+            //    GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
+            //}
+            //switch ((ScenarioContext.Current["TestContext"] as Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)?.CurrentTestOutcome)
             //{
             //    case UnitTestOutcome.Failed:
+            //    case UnitTestOutcome.Error:
             //        var bytes = TakeScreen();
             //        GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
             //        break;

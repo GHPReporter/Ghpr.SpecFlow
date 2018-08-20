@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BoDi;
 using Ghpr.Core;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
@@ -32,7 +33,10 @@ namespace GhprSpecFlow.Common
             IContextManager contextManager, 
             IStepDefinitionMatchService stepDefinitionMatchService, 
             IDictionary<string, IStepErrorHandler> stepErrorHandlers, 
-            IBindingInvoker bindingInvoker)
+            IBindingInvoker bindingInvoker,
+            IObsoleteStepHandler obsoleteStepHandler,
+            ITestObjectResolver testObjectResolver,
+            IObjectContainer objectContainer)
         {
             _engine = new TestExecutionEngine(stepFormatter,
                 testTracer,
@@ -45,7 +49,10 @@ namespace GhprSpecFlow.Common
                 contextManager,
                 stepDefinitionMatchService,
                 stepErrorHandlers,
-                bindingInvoker);
+                bindingInvoker, 
+                obsoleteStepHandler,
+                testObjectResolver,
+                objectContainer);
         }
         
         public void OnTestRunStart()
@@ -81,12 +88,21 @@ namespace GhprSpecFlow.Common
                 _engine.OnFeatureEnd();
             }
         }
-        
-        public void OnScenarioStart(ScenarioInfo scenarioInfo)
+
+        public void OnScenarioInitialize(ScenarioInfo scenarioInfo)
+        {
+
+            lock (Lock)
+            {
+                _engine.OnScenarioInitialize(scenarioInfo);
+            }
+        }
+
+        public void OnScenarioStart()
         {
             lock (Lock)
             {
-                _engine.OnScenarioStart(scenarioInfo);
+                _engine.OnScenarioStart();
             }
         }
 

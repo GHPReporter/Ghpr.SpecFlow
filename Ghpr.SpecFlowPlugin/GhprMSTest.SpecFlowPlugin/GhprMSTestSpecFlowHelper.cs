@@ -1,8 +1,8 @@
 ﻿// ReSharper disable InconsistentNaming
 using System;
-using System.Linq;
 using Ghpr.Core.Common;
 using Ghpr.Core.Extensions;
+using Ghpr.Core.Interfaces;
 using GhprSpecFlow.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
@@ -14,7 +14,8 @@ namespace GhprMSTest.SpecFlowPlugin
         public GhprMSTestSpecFlowHelper()
         {
             ScreenHelper = new GhprMSTestSpecFlowScreenHelper();
-            TestDataHelper = new GhprMSTestSpecFlowTestDataHelper();           
+            TestDataHelper = new GhprMSTestSpecFlowTestDataHelper();
+            UpdateTestDataProvider = true;
         }
 
         public static string GetFullNameForGuid(TestContext tc, ScenarioContext sc, FeatureContext fc)
@@ -23,8 +24,20 @@ namespace GhprMSTest.SpecFlowPlugin
                    $"{sc.ScenarioInfo.Title} [{string.Join(",", sc.ScenarioInfo.Tags)}]";
         }
 
+        public static string GetFullName(TestContext tc, ScenarioContext sc, FeatureContext fc)
+        {
+            return
+                $"{sc.TryGetTestContext().FullyQualifiedTestClassName}.{fc.FeatureInfo.Title}.{sc.ScenarioInfo.Title}";
+        }
+
+        public bool UpdateTestDataProvider { get; }
         public IGhprSpecFlowScreenHelper ScreenHelper { get; private set; }
         public IGhprSpecFlowTestDataHelper TestDataHelper { get; private set; }
+
+        public ITestDataProvider GetTestDataProvider(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        {
+            return new GhprMSTestSpecFlowTestDataProvider(sc.TryGetTestContext(), sc, fc);
+        }
 
         public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
@@ -38,7 +51,11 @@ namespace GhprMSTest.SpecFlowPlugin
             var guid = nameForGuid.ToMd5HashGuid().ToString();
             var testRun = new TestRunDto(guid, name, fullName)
             {
-                Categories = si.Tags
+                Categories = si.Tags,
+                TestInfo =
+                {
+                    Start = DateTime.Now
+                }
             };
             return testRun;
         }
@@ -46,18 +63,20 @@ namespace GhprMSTest.SpecFlowPlugin
         public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc, 
             out TestOutputDto testOutputDto)
         {
+            var finishDt = DateTime.Now;
             var tc = sc.TryGetTestContext();
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
             var guid = nameForGuid.ToMd5HashGuid().ToString();
             tr.TestInfo.Guid = Guid.Parse(guid);
-            tr.FullName = $"{sc.TryGetTestContext().FullyQualifiedTestClassName}.{fc.FeatureInfo.Title}.{sc.ScenarioInfo.Title}";
+            tr.TestInfo.Finish = finishDt;
+            tr.FullName = GetFullName(tc, sc, fc);
             testOutputDto = new TestOutputDto
             {
                 Output = testOutput,
                 SuiteOutput = "",
                 TestOutputInfo = new SimpleItemInfoDto
                 {
-                    Date = tr.TestInfo.Finish,
+                    Date = finishDt,
                     ItemName = "Test output"
                 }
             };

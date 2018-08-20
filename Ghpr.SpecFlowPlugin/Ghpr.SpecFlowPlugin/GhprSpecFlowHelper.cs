@@ -1,6 +1,7 @@
 ﻿using System;
 using Ghpr.Core.Common;
 using Ghpr.Core.Extensions;
+using Ghpr.Core.Interfaces;
 using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
 
@@ -12,10 +13,17 @@ namespace Ghpr.SpecFlowPlugin
         {
             ScreenHelper = new GhprSpecFlowScreenHelper();
             TestDataHelper = new GhprSpecFlowPluginTestDataHelper();
+            UpdateTestDataProvider = false;
         }
 
+        public bool UpdateTestDataProvider { get; }
         public IGhprSpecFlowScreenHelper ScreenHelper { get; }
         public IGhprSpecFlowTestDataHelper TestDataHelper { get; }
+
+        public ITestDataProvider GetTestDataProvider(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        {
+            return new GhprSpecFlowTestDataProvider();
+        }
 
         public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc,
             ScenarioContext sc)

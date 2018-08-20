@@ -48,16 +48,27 @@ namespace GhprSpecFlow.Common
             _runner.OnFeatureEnd();
         }
 
-        public void OnScenarioStart(ScenarioInfo scenarioInfo)
+        public void OnScenarioInitialize(ScenarioInfo scenarioInfo)
+        {
+            _outputWriter = new OutputWriter();
+            _runner.OnScenarioInitialize(scenarioInfo);
+            _outputWriter.WriteScenario(scenarioInfo);
+        }
+
+        public void OnScenarioStart()
         {
             lock (Lock)
             {
-                _outputWriter = new OutputWriter();
-                _runner.OnScenarioStart(scenarioInfo);
+                if (GhprPluginHelper.TestExecutionEngineHelper.UpdateTestDataProvider)
+                {
+                    var provider = GhprPluginHelper.TestExecutionEngineHelper.GetTestDataProvider(_currentFeatureInfo,
+                        _engine.ScenarioContext?.ScenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
+                    ReporterManager.SetTestDataProvider(provider);
+                }
+                _runner.OnScenarioStart();
                 _outputWriter.WriteFeature(_currentFeatureInfo);
-                _outputWriter.WriteScenario(scenarioInfo);
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_runner, _currentFeatureInfo,
-                    scenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
+                    _engine.ScenarioContext?.ScenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
                 ReporterManager.TestStarted(_currentTestRun);
             }
         }
