@@ -95,17 +95,17 @@ namespace Ghpr.TestsForDebug
             //    var bytes = TakeScreen();
             //    GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
             //}
-            //switch ((ScenarioContext.Current["TestContext"] as Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)?.CurrentTestOutcome)
-            //{
-            //    case UnitTestOutcome.Failed:
-            //    case UnitTestOutcome.Error:
-            //        var bytes = TakeScreen();
-            //        GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
-            //        break;
-            //
-            //    default:
-            //        break;
-            //}
+            switch ((ScenarioContext.Current["TestContext"] as Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)?.CurrentTestOutcome)
+            {
+                case UnitTestOutcome.Failed:
+                case UnitTestOutcome.Error:
+                    var bytes = TakeScreen();
+                    GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
+                    break;
+            
+                default:
+                    break;
+            }
         }
 
     }

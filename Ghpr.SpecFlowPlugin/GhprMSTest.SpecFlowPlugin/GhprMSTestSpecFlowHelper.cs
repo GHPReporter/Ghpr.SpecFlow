@@ -1,5 +1,8 @@
 ﻿// ReSharper disable InconsistentNaming
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Ghpr.Core.Common;
 using Ghpr.Core.Extensions;
 using Ghpr.Core.Interfaces;
@@ -11,17 +14,32 @@ namespace GhprMSTest.SpecFlowPlugin
 {
     public class GhprMSTestSpecFlowHelper : IGhprSpecFlowHelper
     {
-        public GhprMSTestSpecFlowHelper()
+        private readonly ILogger _logger;
+
+        public GhprMSTestSpecFlowHelper(ILogger logger)
         {
             ScreenHelper = new GhprMSTestSpecFlowScreenHelper();
             TestDataHelper = new GhprMSTestSpecFlowTestDataHelper();
             UpdateTestDataProvider = true;
+            _logger = logger;
         }
 
         public static string GetFullNameForGuid(TestContext tc, ScenarioContext sc, FeatureContext fc)
         {
-            return $"{fc.FeatureInfo.Title} {fc.FeatureInfo.Description} [{string.Join(", ", fc.FeatureInfo.Tags)}] " +
-                   $"{sc.ScenarioInfo.Title} [{string.Join(",", sc.ScenarioInfo.Tags)}]";
+            var parameters = new List<string>();
+            if (tc?.Properties != null)
+            {
+                foreach (DictionaryEntry entry in tc.Properties)
+                {
+                    if (entry.Key.ToString().ToLower().Contains("parameter"))
+                    {
+                        parameters.Add($"{entry.Key} = {entry.Value}");
+                    }
+                }
+            }
+
+            return $"{tc?.FullyQualifiedTestClassName}.{string.Join(",", parameters)}.{fc.FeatureInfo.Title}" +
+                   $"{fc.FeatureInfo.Description}{sc.ScenarioInfo.Title}";
         }
 
         public static string GetFullName(TestContext tc, ScenarioContext sc, FeatureContext fc)
@@ -42,9 +60,9 @@ namespace GhprMSTest.SpecFlowPlugin
         public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var tc = sc.TryGetTestContext();
-            ScreenHelper = new GhprMSTestSpecFlowScreenHelper(tc, sc, fc);
+            ScreenHelper = new GhprMSTestSpecFlowScreenHelper();
             TestDataHelper = new GhprMSTestSpecFlowTestDataHelper(tc, sc, fc);
-
+            
             var fullName = $"{tc?.FullyQualifiedTestClassName}.{fi.Title}.{si.Title}";
             var name = si.Title;
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
@@ -57,6 +75,15 @@ namespace GhprMSTest.SpecFlowPlugin
                     Start = DateTime.Now
                 }
             };
+            _logger.Debug($"TestRunDto created in GetTestRunOnScenarioStart: FullName = {fullName}, FullNameForGuid = {nameForGuid}");
+            foreach (DictionaryEntry entry in tc.Properties)
+            {
+                _logger.Warn($"TC {entry.Key} = {entry.Value}");
+            }
+            for (int i = 0; i < sc.Keys.Count; i++)
+            {
+                _logger.Warn($"SC {sc.Keys.ToArray()[i]} = {sc.Values.ToArray()[i]}");
+            }
             return testRun;
         }
 
@@ -90,31 +117,26 @@ namespace GhprMSTest.SpecFlowPlugin
 
         public void OnGiven(ScenarioContext sc)
         {
-            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
             (TestDataHelper as GhprMSTestSpecFlowTestDataHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnWhen(ScenarioContext sc)
         {
-            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
             (TestDataHelper as GhprMSTestSpecFlowTestDataHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnAnd(ScenarioContext sc)
         {
-            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
             (TestDataHelper as GhprMSTestSpecFlowTestDataHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnBut(ScenarioContext sc)
         {
-            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
             (TestDataHelper as GhprMSTestSpecFlowTestDataHelper)?.SetTestContext(sc.TryGetTestContext());
         }
 
         public void OnThen(ScenarioContext sc)
         {
-            (ScreenHelper as GhprMSTestSpecFlowScreenHelper)?.SetTestContext(sc.TryGetTestContext());
             (TestDataHelper as GhprMSTestSpecFlowTestDataHelper)?.SetTestContext(sc.TryGetTestContext());
         }
     }
