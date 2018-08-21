@@ -35,6 +35,7 @@ namespace GhprSpecFlow.Common
         public void OnTestRunEnd()
         {
             _runner.OnTestRunEnd();
+            ReporterManager.Action(r => r.TearDown());
         }
 
         public void OnFeatureStart(FeatureInfo featureInfo)
@@ -51,6 +52,7 @@ namespace GhprSpecFlow.Common
         public void OnScenarioInitialize(ScenarioInfo scenarioInfo)
         {
             _outputWriter = new OutputWriter();
+            _outputWriter.WriteFeature(_currentFeatureInfo);
             _runner.OnScenarioInitialize(scenarioInfo);
             _outputWriter.WriteScenario(scenarioInfo);
         }
@@ -66,7 +68,6 @@ namespace GhprSpecFlow.Common
                     ReporterManager.SetTestDataProvider(provider);
                 }
                 _runner.OnScenarioStart();
-                _outputWriter.WriteFeature(_currentFeatureInfo);
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.GetTestRunOnScenarioStart(_runner, _currentFeatureInfo,
                     _engine.ScenarioContext?.ScenarioInfo, _engine.FeatureContext, _engine.ScenarioContext);
                 ReporterManager.TestStarted(_currentTestRun);
