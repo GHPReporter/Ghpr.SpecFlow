@@ -76,14 +76,6 @@ namespace GhprMSTest.SpecFlowPlugin
                 }
             };
             _logger.Debug($"TestRunDto created in GetTestRunOnScenarioStart: FullName = {fullName}, FullNameForGuid = {nameForGuid}");
-            foreach (DictionaryEntry entry in tc.Properties)
-            {
-                _logger.Warn($"TC {entry.Key} = {entry.Value}");
-            }
-            for (int i = 0; i < sc.Keys.Count; i++)
-            {
-                _logger.Warn($"SC {sc.Keys.ToArray()[i]} = {sc.Values.ToArray()[i]}");
-            }
             return testRun;
         }
 

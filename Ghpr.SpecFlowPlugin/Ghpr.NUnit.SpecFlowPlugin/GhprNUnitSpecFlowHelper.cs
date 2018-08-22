@@ -42,7 +42,11 @@ namespace GhprNUnit.SpecFlowPlugin
             var guid = TestContext.CurrentContext.Test.FullName.ToMd5HashGuid().ToString();
             var testRun = new TestRunDto(guid, name, fullName)
             {
-                Categories = si.Tags
+                Categories = si.Tags,
+                TestInfo =
+                {
+                    Start = DateTime.Now
+                }
             };
             return testRun;
         }
