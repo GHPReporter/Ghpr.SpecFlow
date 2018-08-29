@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Ghpr.Core.Common;
+using Ghpr.Core.Extensions;
 using Ghpr.Core.Interfaces;
-using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -15,12 +15,19 @@ namespace GhprNUnit.SpecFlowPlugin
         {
             ScreenHelper = new GhprNUnitSpecFlowScreenHelper();
             TestDataHelper = new GhprNUnitSpecFlowTestDataHelper();
+            UpdateTestDataProvider = false;
         }
 
+        public bool UpdateTestDataProvider { get; }
         public IGhprSpecFlowScreenHelper ScreenHelper { get ; }
         public IGhprSpecFlowTestDataHelper TestDataHelper { get; }
 
-        public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        public ITestDataProvider GetTestDataProvider(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        {
+            return new GhprNUnitSpecFlowTestDataProvider();
+        }
+
+        public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
         {
             var className = TestContext.CurrentContext.Test.ClassName;
             var testName = TestContext.CurrentContext.Test.Name;
@@ -32,23 +39,36 @@ namespace GhprNUnit.SpecFlowPlugin
             className = string.Join(".", names);
             var fullName = $"{className}.{fi.Title}.{testName}";
             var name = si.Title;
-            var guid = GuidConverter.ToMd5HashGuid(TestContext.CurrentContext.Test.FullName).ToString();
-            var testRun = new TestRun(guid, name, fullName)
+            var guid = TestContext.CurrentContext.Test.FullName.ToMd5HashGuid().ToString();
+            var testRun = new TestRunDto(guid, name, fullName)
             {
-                Categories = si.Tags
+                Categories = si.Tags,
+                TestInfo =
+                {
+                    Start = DateTime.Now
+                }
             };
             return testRun;
         }
 
-        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc)
+        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc, 
+            out TestOutputDto testOutputDto)
         {
-            tr.Output = testOutput;
+            testOutputDto = new TestOutputDto
+            {
+                Output = testOutput,
+                SuiteOutput = "",
+                TestOutputInfo = new SimpleItemInfoDto
+                {
+                    Date = tr.TestInfo.Finish,
+                    ItemName = "Test output"
+                }
+            };
+            tr.Output = testOutputDto.TestOutputInfo;
             //tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
             tr.Result = TestContext.CurrentContext.Result.Outcome.ToString();
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
-            tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
-                .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
             tr.TestData.AddRange(TestDataHelper.GetTestData());
             return tr;
         }

@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Ghpr.Core.Common;
-using Ghpr.Core.Helpers;
-using Ghpr.Core.Interfaces;
+using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
@@ -47,14 +46,14 @@ namespace GhprMSTest.SpecFlowPlugin
         public void AddTestData(string actual, string expected, string comment)
         {
             var count = 0;
-            var dateTimeKey = TestDataHelper.GetTestDataDateTimeKey(count);
-            var actualKey = TestDataHelper.GetTestDataActualKey(count);
-            var expectedKey = TestDataHelper.GetTestDataExpectedKey(count);
-            var commentKey = TestDataHelper.GetTestDataCommentKey(count);
+            var dateTimeKey = Paths.GetTestDataDateTimeKey(count);
+            var actualKey = Paths.GetTestDataActualKey(count);
+            var expectedKey = Paths.GetTestDataExpectedKey(count);
+            var commentKey = Paths.GetTestDataCommentKey(count);
             while (_testContext.Properties[dateTimeKey] != null)
             {
                 count++;
-                dateTimeKey = TestDataHelper.GetTestDataDateTimeKey(count);
+                dateTimeKey = Paths.GetTestDataDateTimeKey(count);
             }
 
             _testContext.Properties.Add(dateTimeKey, DateTime.Now.ToString("yyyyMMdd_HHmmssfff"));
@@ -63,14 +62,14 @@ namespace GhprMSTest.SpecFlowPlugin
             _testContext.Properties.Add(commentKey, comment);
         }
 
-        public List<ITestData> GetTestData()
+        public List<TestDataDto> GetTestData()
         {
-            var testData = new List<ITestData>();
+            var testData = new List<TestDataDto>();
             var count = 0;
-            var dateTimeKey = TestDataHelper.GetTestDataDateTimeKey(count);
-            var actualKey = TestDataHelper.GetTestDataActualKey(count);
-            var expectedKey = TestDataHelper.GetTestDataExpectedKey(count);
-            var commentKey = TestDataHelper.GetTestDataCommentKey(count);
+            var dateTimeKey = Paths.GetTestDataDateTimeKey(count);
+            var actualKey = Paths.GetTestDataActualKey(count);
+            var expectedKey = Paths.GetTestDataExpectedKey(count);
+            var commentKey = Paths.GetTestDataCommentKey(count);
             while (_testContext?.Properties[dateTimeKey] != null)
             {
                 var date = DateTime.ParseExact(_testContext.Properties[dateTimeKey].ToString(),
@@ -78,19 +77,23 @@ namespace GhprMSTest.SpecFlowPlugin
                 var actual = _testContext.Properties[actualKey].ToString();
                 var expected = _testContext.Properties[expectedKey].ToString();
                 var comment = _testContext.Properties[commentKey].ToString();
-                testData.Add(new TestData
+                testData.Add(new TestDataDto
                 {
-                    Date = date,
+                    TestDataInfo = new SimpleItemInfoDto
+                    {
+                        Date = date,
+                        ItemName = "Test data"
+                    },
                     Actual = actual,
                     Expected = expected,
                     Comment = comment
                 });
-
+            
                 count++;
-                dateTimeKey = TestDataHelper.GetTestDataDateTimeKey(count);
-                actualKey = TestDataHelper.GetTestDataActualKey(count);
-                expectedKey = TestDataHelper.GetTestDataExpectedKey(count);
-                commentKey = TestDataHelper.GetTestDataCommentKey(count);
+                dateTimeKey = Paths.GetTestDataDateTimeKey(count);
+                actualKey = Paths.GetTestDataActualKey(count);
+                expectedKey = Paths.GetTestDataExpectedKey(count);
+                commentKey = Paths.GetTestDataCommentKey(count);
             }
 
             return testData;

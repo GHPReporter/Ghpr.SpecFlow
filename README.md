@@ -31,3 +31,7 @@
  - Run your tests
  
 For more information see working solution example here: https://github.com/GHPReporter/Ghpr.SpecFlow.Examples
+
+# Release notes
+
+You can find it [here](https://github.com/GHPReporter/Ghpr.Core/blob/master/RELEASE_NOTES.md) for all packages.
