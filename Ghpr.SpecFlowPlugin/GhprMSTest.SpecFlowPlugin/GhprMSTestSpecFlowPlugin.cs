@@ -1,6 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 using Ghpr.Core;
 using Ghpr.Core.Enums;
+using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
@@ -19,9 +20,10 @@ namespace GhprMSTest.SpecFlowPlugin
 
         public void Initialize(RuntimePluginEvents runtimePluginEvents, RuntimePluginParameters runtimePluginParameters)
         {
-            ReporterManager.Initialize(TestingFramework.SpecFlow);
-            StaticLog.Initialize(ReporterManager.OutputPath);
-            var specFlowHelper = new GhprMSTestSpecFlowHelper();
+            ReporterManager.Initialize(TestingFramework.SpecFlow, new GhprMSTestSpecFlowTestDataProvider());
+            ILogger logger = new EmptyLogger();
+            ReporterManager.Action(r => { logger = r.Logger; });
+            var specFlowHelper = new GhprMSTestSpecFlowHelper(logger);
             GhprPluginHelper.Init(specFlowHelper);
             runtimePluginEvents.CustomizeTestThreadDependencies += CustomizeTestThreadDependencies;
         }

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using Ghpr.Core.Common;
+using Ghpr.Core.Extensions;
 using Ghpr.Core.Interfaces;
-using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
 
@@ -14,33 +13,45 @@ namespace Ghpr.SpecFlowPlugin
         {
             ScreenHelper = new GhprSpecFlowScreenHelper();
             TestDataHelper = new GhprSpecFlowPluginTestDataHelper();
+            UpdateTestDataProvider = false;
         }
 
+        public bool UpdateTestDataProvider { get; }
         public IGhprSpecFlowScreenHelper ScreenHelper { get; }
         public IGhprSpecFlowTestDataHelper TestDataHelper { get; }
 
-        public ITestRun GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc,
+        public ITestDataProvider GetTestDataProvider(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc)
+        {
+            return new GhprSpecFlowTestDataProvider();
+        }
+
+        public TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc,
             ScenarioContext sc)
         {
             var fullName = $"Features.{fi.Title}.{si.Title}";
             var name = si.Title;
-            var guid = GuidConverter.ToMd5HashGuid(fullName).ToString();
-            var testRun = new TestRun(guid, name, fullName)
+            var guid = fullName.ToMd5HashGuid();
+            var testRun = new TestRunDto(guid, name, fullName)
             {
                 Categories = si.Tags
             };
             return testRun;
         }
 
-        public ITestRun UpdateTestRunOnScenarioEnd(ITestRun tr, Exception testError, string testOutput, FeatureContext fc,
-            ScenarioContext sc)
+        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc,
+            ScenarioContext sc, out TestOutputDto testOutputDto)
         {
-            tr.Output = testOutput;
+            var toDto = new TestOutputDto
+            {
+                Output = testOutput,
+                SuiteOutput = "",
+                TestOutputInfo = new SimpleItemInfoDto {ItemName = "Test output", Date = tr.TestInfo.Finish}
+            };
+            testOutputDto = toDto;
+            tr.Output = toDto.TestOutputInfo;
             tr.Result = testError == null ? "Passed" : "Failed";
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";
-            tr.Screenshots.AddRange(ScreenHelper.GetScreenshots()
-                .Where(s => !tr.Screenshots.Any(cs => cs.Name.Equals(s.Name))));
             return tr;
         }
         

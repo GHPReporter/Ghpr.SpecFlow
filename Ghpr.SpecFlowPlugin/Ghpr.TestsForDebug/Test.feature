@@ -17,6 +17,7 @@ Scenario: Add two numbers v2
 	Given I have entered 50 into the calculator
 	And I have entered 70 into the calculator
 	When I press add
+	And I take screenshot
 	Then the result should be 140 on the screen
 
 @outline

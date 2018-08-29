@@ -1,7 +1,7 @@
 ﻿{
   "outputPath": "C:\\_GHPReporter_SpecFlow_Report",
   "dataServiceFile": "Ghpr.LocalFileSystem.dll",
-  "loggerFile": "Ghpr.SerilogToSeqLogger.dll",
+  "loggerFile": "",
   "sprint": "",
   "runName": "",
   "runGuid": "",
@@ -9,7 +9,7 @@
   "runsToDisplay": "5",
   "testsToDisplay": "5",
   "retention": {
-    "amount": 1000,
-    "till": "2010-08-24 10:00:00"
+    "amount": 3,
+    "till": "2018-08-29 18:50:00"
   }
 }
