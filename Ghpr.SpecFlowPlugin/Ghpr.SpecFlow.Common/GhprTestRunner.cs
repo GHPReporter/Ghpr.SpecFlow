@@ -35,6 +35,7 @@ namespace GhprSpecFlow.Common
         public void OnTestRunEnd()
         {
             _runner.OnTestRunEnd();
+            ReporterManager.Action(r => r.CleanUpJob());
             ReporterManager.Action(r => r.TearDown());
         }
 
