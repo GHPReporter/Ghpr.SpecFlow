@@ -11,9 +11,9 @@
   <a href="https://github.com/GHPReporter/GHPReporter.github.io/">Site Repo</a>
 </p>
 
-[![Language](http://gh-toprated.info/Badges/LanguageBadge?user=GHPReporter&repo=Ghpr.SpecFlow&theme=light&fontWeight=bold)](https://github.com/GHPReporter/Ghpr.SpecFlow)
 [![Build status](https://ci.appveyor.com/api/projects/status/jtmugpb1axnpc97g?svg=true)](https://ci.appveyor.com/project/elv1s42/ghpr-specflow)
 [![NuGet Version](https://img.shields.io/nuget/v/Ghpr.SpecFlowPlugin.svg)](https://www.nuget.org/packages/Ghpr.SpecFlowPlugin)
+[![CodeFactor](https://www.codefactor.io/repository/github/ghpreporter/ghpr.specflow/badge)](https://www.codefactor.io/repository/github/ghpreporter/ghpr.specflow)
 
 # Ghpr.SpecFlow
 
