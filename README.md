@@ -13,7 +13,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/jtmugpb1axnpc97g?svg=true)](https://ci.appveyor.com/project/elv1s42/ghpr-specflow)
 [![NuGet Version](https://img.shields.io/nuget/v/Ghpr.SpecFlowPlugin.svg)](https://www.nuget.org/packages/Ghpr.SpecFlowPlugin)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8d1af01424c4010b307bbb7257ff79f)](https://www.codacy.com/app/42_/Ghpr.SpecFlow?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GHPReporter/Ghpr.SpecFlow&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a8d1af01424c4010b307bbb7257ff79f)](https://www.codacy.com/app/GHPReporter/Ghpr.SpecFlow?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GHPReporter/Ghpr.SpecFlow&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/ghpreporter/ghpr.specflow/badge)](https://www.codefactor.io/repository/github/ghpreporter/ghpr.specflow)
 
 # Ghpr.SpecFlow
