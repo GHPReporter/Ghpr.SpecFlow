@@ -4,6 +4,7 @@
   "loggerFile": "",
   "sprint": "",
   "reportName": "GHP Report",
+  "projectName": "Awesome project",
   "runName": "",
   "runGuid": "",
   "realTimeGeneration": "True",
@@ -11,6 +12,6 @@
   "testsToDisplay": "5",
   "retention": {
     "amount": 10,
-    "till": "2010-08-20 10:00:00"
+    "till": "2018-08-20 10:00:00"
   }
 }
