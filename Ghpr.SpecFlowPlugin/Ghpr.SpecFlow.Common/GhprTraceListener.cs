@@ -18,12 +18,12 @@ namespace GhprSpecFlow.Common
         
         public void WriteTestOutput(string message)
         {
-            _traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, false);
+            _traceListenerQueue.EnqueueMessage(_testRunner.Value, message, false);
         }
 
         public void WriteToolOutput(string message)
         {
-            _traceListenerQueue.EnqueueMessgage(_testRunner.Value, message, true);
+            _traceListenerQueue.EnqueueMessage(_testRunner.Value, message, true);
         }
     }
 }
