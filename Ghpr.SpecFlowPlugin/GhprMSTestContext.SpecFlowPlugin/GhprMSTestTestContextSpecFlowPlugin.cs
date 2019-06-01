@@ -1,6 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
 
-using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Generator.Plugins;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.UnitTestProvider;

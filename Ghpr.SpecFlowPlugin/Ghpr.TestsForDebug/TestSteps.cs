@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using GhprNUnit.SpecFlowPlugin;
 using GhprSpecFlow.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
