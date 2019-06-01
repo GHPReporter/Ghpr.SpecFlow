@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props')" />
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -94,11 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Test.feature</DependentUpon>
-    </Compile>
     <Compile Include="TestSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,10 +106,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Test.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Test.feature.cs</LastGenOutput>
-    </None>
+    <None Include="Test.feature" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj">
@@ -142,7 +135,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
   </Target>
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

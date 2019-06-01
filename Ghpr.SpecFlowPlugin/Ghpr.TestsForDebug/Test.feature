@@ -3,7 +3,7 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 	
-@mytag
+@mytag1
 Scenario: Add two numbers
 	Given I have number 50
 	Given I have entered 50 into the calculator
@@ -12,7 +12,7 @@ Scenario: Add two numbers
 	And I add test data
 	Then the result should be 120 on the screen
 
-@mytag
+@mytag1
 Scenario: Add two numbers v2
 	Given I have entered 50 into the calculator
 	And I have entered 70 into the calculator
