@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.SpecFlowPlugin", "Ghpr.SpecFlowPlugin\Ghpr.SpecFlowPlugin.csproj", "{84E12915-13CB-4150-8F87-B6DDFDDDFB46}"
 EndProject
@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprMSTest.SpecFlowPlugin",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprMSTestTestContext.SpecFlowPlugin", "GhprMSTestContext.SpecFlowPlugin\GhprMSTestTestContext.SpecFlowPlugin.csproj", "{C947BBB6-7ABF-4C10-82A4-0B53AB2308D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug", "Ghpr.TestsForDebug\Ghpr.TestsForDebug.csproj", "{5A364047-FD18-4072-A5AB-8FBCC59A5DED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug.NUnit", "Ghpr.TestsForDebug\Ghpr.TestsForDebug.NUnit.csproj", "{5A364047-FD18-4072-A5AB-8FBCC59A5DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug.MSTest", "Ghpr.TestsForDebug.MSTest\Ghpr.TestsForDebug.MSTest.csproj", "{E9B87FC9-1713-4DAA-968B-DA70C58E899C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +47,15 @@ Global
 		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A364047-FD18-4072-A5AB-8FBCC59A5DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9B87FC9-1713-4DAA-968B-DA70C58E899C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9B87FC9-1713-4DAA-968B-DA70C58E899C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9B87FC9-1713-4DAA-968B-DA70C58E899C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9B87FC9-1713-4DAA-968B-DA70C58E899C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4046CC4-0795-4A3E-B3B3-B4471AD31F10}
 	EndGlobalSection
 EndGlobal
