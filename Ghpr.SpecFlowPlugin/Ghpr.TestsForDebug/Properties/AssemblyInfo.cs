@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghpr.TestsForDebug")]
+[assembly: AssemblyTitle("Ghpr.TestsForDebug.NUnit")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Evgeniy Kosjakov")]
-[assembly: AssemblyProduct("Ghpr.TestsForDebug")]
+[assembly: AssemblyProduct("Ghpr.TestsForDebug.NUnit")]
 [assembly: AssemblyCopyright("Copyright © Evgeniy Kosjakov 2016-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

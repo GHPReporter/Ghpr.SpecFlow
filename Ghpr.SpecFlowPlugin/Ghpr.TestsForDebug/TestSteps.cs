@@ -7,7 +7,7 @@ using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
 
-namespace Ghpr.TestsForDebug
+namespace Ghpr.TestsForDebugNUnit
 {
     [Binding]
     public class TestSteps : Steps
@@ -94,17 +94,6 @@ namespace Ghpr.TestsForDebug
                 var bytes = TakeScreen();
                 GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
             }
-            //switch ((ScenarioContext.Current["TestContext"] as Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)?.CurrentTestOutcome)
-            //{
-            //    case UnitTestOutcome.Failed:
-            //    case UnitTestOutcome.Error:
-            //        var bytes = TakeScreen();
-            //        GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
-            //        break;
-            //
-            //    default:
-            //        break;
-            //}
         }
 
     }

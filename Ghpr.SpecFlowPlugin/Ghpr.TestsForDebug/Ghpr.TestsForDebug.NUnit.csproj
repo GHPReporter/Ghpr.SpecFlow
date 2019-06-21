@@ -10,8 +10,8 @@
     <ProjectGuid>{5A364047-FD18-4072-A5AB-8FBCC59A5DED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ghpr.TestsForDebug</RootNamespace>
-    <AssemblyName>Ghpr.TestsForDebug</AssemblyName>
+    <RootNamespace>Ghpr.TestsForDebugNUnit</RootNamespace>
+    <AssemblyName>Ghpr.TestsForDebugNUnit</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
