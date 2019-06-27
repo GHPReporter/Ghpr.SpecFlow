@@ -82,7 +82,8 @@ namespace GhprMSTest.SpecFlowPlugin
             out TestOutputDto testOutputDto)
         {
             var finishDt = DateTime.Now;
-            var tc = sc.TryGetTestContext();
+            //var tc = sc.TryGetTestContext();
+            var tc = sc.ScenarioContainer.Resolve<TestContext>();
             var nameForGuid = GetFullNameForGuid(tc, sc, fc);
             var guid = nameForGuid.ToMd5HashGuid().ToString();
             tr.TestInfo.Guid = Guid.Parse(guid);

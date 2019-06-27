@@ -45,6 +45,10 @@ namespace GhprMSTest.SpecFlowPlugin
 
         public void AddTestData(string actual, string expected, string comment)
         {
+            if (_testContext == null)
+            {
+                _testContext = _scenarioContext.ScenarioContainer.Resolve<TestContext>();
+            }
             var count = 0;
             var dateTimeKey = Paths.GetTestDataDateTimeKey(count);
             var actualKey = Paths.GetTestDataActualKey(count);

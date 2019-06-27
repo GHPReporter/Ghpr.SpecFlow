@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using GhprNUnit.SpecFlowPlugin;
 using GhprSpecFlow.Common;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
@@ -50,17 +51,13 @@ namespace Ghpr.TestsForDebugNUnit
         [When(@"I add test data")]
         public void WhenIAddTestData()
         {
-            //GhprMSTestSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
             GhprNUnitSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
         }
 
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
-            if (p0 != (int)ScenarioContext.Current["first"] + (int)ScenarioContext.Current["second"])
-            {
-                throw new Exception("sum is wrong");
-            }
+            Assert.AreEqual(p0, (int)ScenarioContext.Current["first"] + (int)ScenarioContext.Current["second"], "Wrong sum!");
         }
 
         [Given(@"I take '(.*)' from table")]
