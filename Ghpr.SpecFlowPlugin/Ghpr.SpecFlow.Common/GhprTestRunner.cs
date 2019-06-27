@@ -1,4 +1,5 @@
-﻿using Ghpr.Core;
+﻿using System;
+using Ghpr.Core;
 using Ghpr.Core.Common;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
@@ -88,9 +89,22 @@ namespace GhprSpecFlow.Common
                 var testOutput = _outputWriter.GetOutput();
                 var fc = _engine.FeatureContext;
                 var sc = _engine.ScenarioContext;
+                var finish = DateTime.Now;
+                _currentTestRun.TestInfo.Finish = finish;
+                var testOutputDto = new TestOutputDto
+                {
+                    Output = testOutput,
+                    SuiteOutput = "",
+                    TestOutputInfo = new SimpleItemInfoDto
+                    {
+                        Date = finish,
+                        ItemName = "Test output"
+                    }
+                };
+                _currentTestRun.Output = testOutputDto.TestOutputInfo;
                 _currentTestRun = GhprPluginHelper.TestExecutionEngineHelper.UpdateTestRunOnScenarioEnd(
-                    _currentTestRun, te, testOutput, fc, sc, out var runOutput);
-                ReporterManager.TestFinished(_currentTestRun, runOutput);
+                    _currentTestRun, te, testOutputDto, fc, sc);
+                ReporterManager.TestFinished(_currentTestRun, testOutputDto);
                 _runner.OnScenarioEnd();
                 _outputWriter.Flush();
             }

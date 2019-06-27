@@ -14,8 +14,7 @@ namespace GhprMSTest.SpecFlowPlugin
     public class GhprMSTestSpecFlowTestDataHelper : IGhprSpecFlowTestDataHelper
     {
         private TestContext _testContext;
-        private ScenarioContext _scenarioContext;
-        private FeatureContext _featureContext;
+        private readonly ScenarioContext _scenarioContext;
 
         public GhprMSTestSpecFlowTestDataHelper()
         {
@@ -29,18 +28,10 @@ namespace GhprMSTest.SpecFlowPlugin
             }
         }
 
-        public void SetContext(TestContext testContext, ScenarioContext sc, FeatureContext fc)
-        {
-            _testContext = testContext;
-            _scenarioContext = sc;
-            _featureContext = fc;
-        }
-
         public GhprMSTestSpecFlowTestDataHelper(TestContext testContext, ScenarioContext sc, FeatureContext fc)
         {
             _testContext = testContext;
             _scenarioContext = sc;
-            _featureContext = fc;
         }
 
         public void AddTestData(string actual, string expected, string comment)

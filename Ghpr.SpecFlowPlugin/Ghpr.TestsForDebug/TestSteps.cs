@@ -25,6 +25,13 @@ namespace Ghpr.TestsForDebugNUnit
             }
         }
 
+        private readonly ScenarioContext _scenarioContext;
+
+        public TestSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -40,7 +47,7 @@ namespace Ghpr.TestsForDebugNUnit
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0)
         {
-            ScenarioContext.Current.Add(ScenarioContext.Current.ContainsKey("first") ? "second" : "first", p0);
+            _scenarioContext.Add(_scenarioContext.ContainsKey("first") ? "second" : "first", p0);
         }
 
         [When(@"I press add")]
@@ -57,19 +64,19 @@ namespace Ghpr.TestsForDebugNUnit
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
-            Assert.AreEqual(p0, (int)ScenarioContext.Current["first"] + (int)ScenarioContext.Current["second"], "Wrong sum!");
+            Assert.AreEqual(p0, (int)_scenarioContext["first"] + (int)_scenarioContext["second"], "Wrong sum!");
         }
 
         [Given(@"I take '(.*)' from table")]
         public void GivenITakeFromTable(int p0)
         {
-            ScenarioContext.Current.Add(ScenarioContext.Current.ContainsKey("first") ? "second" : "first", p0);
+            _scenarioContext.Add(_scenarioContext.ContainsKey("first") ? "second" : "first", p0);
         }
 
         [Then(@"the sum should be '(.*)'")]
         public void ThenTheSumShouldBe(int p0)
         {
-            if (p0 != (int)ScenarioContext.Current["first"] + (int)ScenarioContext.Current["second"])
+            if (p0 != (int)_scenarioContext["first"] + (int)_scenarioContext["second"])
             {
                 throw new Exception("sum is wrong");
             }
@@ -92,6 +99,5 @@ namespace Ghpr.TestsForDebugNUnit
                 GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
             }
         }
-
     }
 }

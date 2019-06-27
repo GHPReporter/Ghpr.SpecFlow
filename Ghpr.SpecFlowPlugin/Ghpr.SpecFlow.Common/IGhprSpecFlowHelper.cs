@@ -14,7 +14,7 @@ namespace GhprSpecFlow.Common
         ITestDataProvider GetTestDataProvider(FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc);
 
         TestRunDto GetTestRunOnScenarioStart(ITestRunner runner, FeatureInfo fi, ScenarioInfo si, FeatureContext fc, ScenarioContext sc);
-        TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc, out TestOutputDto testOutputDto);
+        TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, TestOutputDto testOutputDto, FeatureContext fc, ScenarioContext sc);
         void OnGiven(ScenarioContext sc);
         void OnWhen(ScenarioContext sc);
         void OnAnd(ScenarioContext sc);
