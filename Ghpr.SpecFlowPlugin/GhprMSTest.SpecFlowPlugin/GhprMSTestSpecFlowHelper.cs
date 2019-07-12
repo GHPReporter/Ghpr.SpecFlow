@@ -28,7 +28,7 @@ namespace GhprMSTest.SpecFlowPlugin
             var parameters = new List<string>();
             if (tc?.Properties != null)
             {
-                foreach (DictionaryEntry entry in tc.Properties)
+                foreach (KeyValuePair<string, object> entry in tc.Properties)
                 {
                     if (entry.Key.ToString().ToLower().Contains("parameter"))
                     {

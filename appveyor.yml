@@ -186,10 +186,10 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   test:
     assemblies:
