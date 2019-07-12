@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+//using System.Drawing;
+//using System.Windows.Forms;
 using GhprMSTest.SpecFlowPlugin;
 using GhprSpecFlow.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,14 +13,15 @@ namespace Ghpr.TestsForDebug.MSTest
     {
         public static byte[] TakeScreen()
         {
-            var b = Screen.PrimaryScreen.Bounds;
-            var ic = new ImageConverter();
-            using (var btm = new Bitmap(b.Width, b.Height))
-            using (var g = Graphics.FromImage(btm))
-            {
-                g.CopyFromScreen(b.X, b.Y, 0, 0, btm.Size, CopyPixelOperation.SourceCopy);
-                return (byte[])ic.ConvertTo(btm, typeof(byte[]));
-            }
+            //var b = Screen.PrimaryScreen.Bounds;
+            //var ic = new ImageConverter();
+            //using (var btm = new Bitmap(b.Width, b.Height))
+            //using (var g = Graphics.FromImage(btm))
+            //{
+            //    g.CopyFromScreen(b.X, b.Y, 0, 0, btm.Size, CopyPixelOperation.SourceCopy);
+            //    return (byte[])ic.ConvertTo(btm, typeof(byte[]));
+            //}
+            return null;
         }
 
         private TestContext _testContext;

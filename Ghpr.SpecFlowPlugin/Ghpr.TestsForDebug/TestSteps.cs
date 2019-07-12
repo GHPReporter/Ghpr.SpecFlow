@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+//using System.Drawing;
+//using System.Windows.Forms;
 using GhprNUnit.SpecFlowPlugin;
 using GhprSpecFlow.Common;
 using NUnit.Framework;
@@ -15,14 +15,15 @@ namespace Ghpr.TestsForDebugNUnit
     {
         public static byte[] TakeScreen()
         {
-            var b = Screen.PrimaryScreen.Bounds;
-            var ic = new ImageConverter();
-            using (var btm = new Bitmap(b.Width, b.Height))
-            using (var g = Graphics.FromImage(btm))
-            {
-                g.CopyFromScreen(b.X, b.Y, 0, 0, btm.Size, CopyPixelOperation.SourceCopy);
-                return (byte[])ic.ConvertTo(btm, typeof(byte[]));
-            }
+            //var b = Screen.PrimaryScreen.Bounds;
+            //var ic = new ImageConverter();
+            //using (var btm = new Bitmap(b.Width, b.Height))
+            //using (var g = Graphics.FromImage(btm))
+            //{
+            //    g.CopyFromScreen(b.X, b.Y, 0, 0, btm.Size, CopyPixelOperation.SourceCopy);
+            //    return (byte[])ic.ConvertTo(btm, typeof(byte[]));
+            //}
+            return null;
         }
 
         private readonly ScenarioContext _scenarioContext;
