@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>Ghpr.MSTest.SpecFlowPlugin</id>
     <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <title>Ghpr.MSTest.SpecFlowPlugin</title>
+    <authors>Evgeniy Kosjakov</authors>
+    <owners>Evgeniy Kosjakov</owners>
     <licenseUrl>https://github.com/GHPReporter/Ghpr.SpecFlow/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/GHPReporter/Ghpr.SpecFlow</projectUrl>
     <iconUrl>https://github.com/GHPReporter/GHPReporter.github.io/blob/master/img/logo-small.png?raw=true</iconUrl>
