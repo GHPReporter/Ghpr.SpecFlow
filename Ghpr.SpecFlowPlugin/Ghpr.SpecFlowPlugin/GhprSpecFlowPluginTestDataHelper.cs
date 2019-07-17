@@ -12,7 +12,7 @@ namespace Ghpr.SpecFlowPlugin
                                                      "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");
         }
 
-        List<TestDataDto> IGhprSpecFlowTestDataHelper.GetTestData()
+        public List<TestDataDto> GetTestData()
         {
             throw new System.NotImplementedException("This feature is not supported for Ghpr.SpecFlowPlugin. " +
                                                      "Please use GhprMSTest.SpecFlowPlugin or GhprNUnit.SpecFlowPlugin");

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Ghpr.Core.Common;
-using Ghpr.Core.Helpers;
-using Ghpr.Core.Interfaces;
 using Ghpr.Core.Utils;
 using GhprSpecFlow.Common;
 using NUnit.Framework;

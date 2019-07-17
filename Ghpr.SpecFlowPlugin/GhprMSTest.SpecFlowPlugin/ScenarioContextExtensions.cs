@@ -5,10 +5,9 @@ namespace GhprMSTest.SpecFlowPlugin
 {
     public static class ScenarioContextExtensions
     {
-        public static TestContext TryGetTestContext(this ScenarioContext sc)
+        public static TestContext TestContext(this ScenarioContext sc)
         {
-            return sc.ContainsKey("TestContext") ? sc["TestContext"] as TestContext : null;
-            //return sc.ScenarioContainer.Resolve<TestContext>();
+            return sc.ScenarioContainer.Resolve<TestContext>();
         }
     }
 }

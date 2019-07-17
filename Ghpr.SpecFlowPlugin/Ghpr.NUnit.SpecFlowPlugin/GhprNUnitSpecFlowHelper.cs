@@ -51,21 +51,8 @@ namespace GhprNUnit.SpecFlowPlugin
             return testRun;
         }
 
-        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc, ScenarioContext sc, 
-            out TestOutputDto testOutputDto)
+        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, TestOutputDto testOutputDto, FeatureContext fc, ScenarioContext sc)
         {
-            testOutputDto = new TestOutputDto
-            {
-                Output = testOutput,
-                SuiteOutput = "",
-                TestOutputInfo = new SimpleItemInfoDto
-                {
-                    Date = tr.TestInfo.Finish,
-                    ItemName = "Test output"
-                }
-            };
-            tr.Output = testOutputDto.TestOutputInfo;
-            //tr.Result = testError == null ? "Passed" : (testError is AssertionException ? "Failed" : "Error");
             tr.Result = TestContext.CurrentContext.Result.Outcome.ToString();
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";

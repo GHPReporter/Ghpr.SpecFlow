@@ -2,8 +2,8 @@
 
 using System.CodeDom;
 using TechTalk.SpecFlow.Generator;
+using TechTalk.SpecFlow.Generator.CodeDom;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
-using TechTalk.SpecFlow.Utils;
 
 namespace GhprMSTestTestContext.SpecFlowPlugin
 {

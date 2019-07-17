@@ -1,6 +1,6 @@
 ﻿{
   "default": {
-    "outputPath": "C:\\_GHPReporter_SpecFlow_Report",
+    "outputPath": "C:\\_GHPReporter_SpecFlow_Report_MSTest",
     "dataServiceFile": "Ghpr.LocalFileSystem.dll",
     "loggerFile": "",
     "sprint": "",

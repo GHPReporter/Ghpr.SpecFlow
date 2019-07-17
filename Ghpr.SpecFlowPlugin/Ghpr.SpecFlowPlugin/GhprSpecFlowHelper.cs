@@ -38,17 +38,9 @@ namespace Ghpr.SpecFlowPlugin
             return testRun;
         }
 
-        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, string testOutput, FeatureContext fc,
-            ScenarioContext sc, out TestOutputDto testOutputDto)
+        public TestRunDto UpdateTestRunOnScenarioEnd(TestRunDto tr, Exception testError, TestOutputDto testOutputDto, FeatureContext fc,
+            ScenarioContext sc)
         {
-            var toDto = new TestOutputDto
-            {
-                Output = testOutput,
-                SuiteOutput = "",
-                TestOutputInfo = new SimpleItemInfoDto {ItemName = "Test output", Date = tr.TestInfo.Finish}
-            };
-            testOutputDto = toDto;
-            tr.Output = toDto.TestOutputInfo;
             tr.Result = testError == null ? "Passed" : "Failed";
             tr.TestMessage = testError?.Message ?? "";
             tr.TestStackTrace = testError?.StackTrace ?? "";

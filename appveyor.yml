@@ -6,16 +6,16 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.csproj" -Prop Configuration=Release
+    - dotnet pack -c Release "Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.csproj" /p:NuspecFile="Ghpr.SpecFlow.nuspec"
 
   artifacts:
-    - path: '*.nupkg'
+    - path: '**\*.nupkg'
       name: nupkg
 
   deploy:
@@ -25,7 +25,7 @@
       secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
     skip_symbols: false
     artifact: nupkg
- 
+
   test:
     assemblies:
       - '**\*TestsExample.dll'
@@ -42,16 +42,16 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.SpecFlow.Common/GhprSpecFlow.Common.csproj" -Prop Configuration=Release
+    - dotnet pack -c Release "Ghpr.SpecFlowPlugin/Ghpr.SpecFlow.Common/GhprSpecFlow.Common.csproj" /p:NuspecFile="GhprSpecFlow.Common.nuspec"
 
   artifacts:
-    - path: '*.nupkg'
+    - path: '**\*.nupkg'
       name: nupkg
 
   deploy:
@@ -69,7 +69,7 @@
     categories:
       only:
         - SuccessCategory
-        
+
 -
   branches:
     only:
@@ -78,16 +78,16 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/GhprNUnit.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+    - dotnet pack -c Release "Ghpr.SpecFlowPlugin/Ghpr.NUnit.SpecFlowPlugin/GhprNUnit.SpecFlowPlugin.csproj" /p:NuspecFile="GhprNUnit.SpecFlowPlugin.nuspec"
 
   artifacts:
-    - path: '*.nupkg'
+    - path: '**\*.nupkg'
       name: nupkg
 
   deploy:
@@ -97,7 +97,7 @@
       secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
     skip_symbols: false
     artifact: nupkg
- 
+
   test:
     assemblies:
       - '**\*TestsExample.dll'
@@ -105,7 +105,7 @@
     categories:
       only:
         - SuccessCategory
-        
+
 -
   branches:
     only:
@@ -114,16 +114,16 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
+    - dotnet pack -c Release "Ghpr.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin/GhprMSTest.SpecFlowPlugin.csproj" /p:NuspecFile="GhprMSTest.SpecFlowPlugin.nuspec"
 
   artifacts:
-    - path: '*.nupkg'
+    - path: '**\*.nupkg'
       name: nupkg
 
   deploy:
@@ -141,43 +141,7 @@
     categories:
       only:
         - SuccessCategory        
-             
--
-  branches:
-    only:
-    - nuget-mstest-testcontext
 
-  image: Visual Studio 2017
-
-  before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
-
-  build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
-
-  after_build:
-    - nuget pack "Ghpr.SpecFlowPlugin/GhprMSTestContext.SpecFlowPlugin/GhprMSTestTestContext.SpecFlowPlugin.csproj" -IncludeReferencedProjects -Prop Configuration=Release
-
-  artifacts:
-    - path: '*.nupkg'
-      name: nupkg
-
-  deploy:
-    provider: NuGet
-    server: 
-    api_key:
-      secure: crLYbWXNgfrzYazkV18cEBRKnl90ee0wjWUfZGIDhkZcZg1ZlGbbsqRdr8JLmU3O
-    skip_symbols: false
-    artifact: nupkg
- 
-  test:
-    assemblies:
-      - '**\*TestsExample.dll'
-      - '**\*TestsExample2.dll'
-    categories:
-      only:
-        - SuccessCategory        
-        
 -
   branches:
     only:
@@ -186,10 +150,10 @@
   image: Visual Studio 2017
 
   before_build:
-    - nuget restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
+    - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
 
   build_script: 
-    - msbuild Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
+    - dotnet build Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln /p:Configuration=Release /t:Rebuild
 
   test:
     assemblies:

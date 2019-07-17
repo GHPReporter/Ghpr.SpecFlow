@@ -1,14 +1,12 @@
 ﻿using System;
 //using System.Drawing;
 //using System.Windows.Forms;
-using GhprNUnit.SpecFlowPlugin;
+using GhprMSTest.SpecFlowPlugin;
 using GhprSpecFlow.Common;
-using NUnit.Framework;
-using NUnit.Framework.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
-using TestContext = NUnit.Framework.TestContext;
 
-namespace Ghpr.TestsForDebugNUnit
+namespace Ghpr.TestsForDebug.MSTest
 {
     [Binding]
     public class TestSteps : Steps
@@ -26,10 +24,12 @@ namespace Ghpr.TestsForDebugNUnit
             return null;
         }
 
-        private readonly ScenarioContext _scenarioContext;
+        private TestContext _testContext;
+        private ScenarioContext _scenarioContext;
 
-        public TestSteps(ScenarioContext scenarioContext)
+        public TestSteps(TestContext testContext, ScenarioContext scenarioContext)
         {
+            _testContext = testContext;
             _scenarioContext = scenarioContext;
         }
 
@@ -59,13 +59,13 @@ namespace Ghpr.TestsForDebugNUnit
         [When(@"I add test data")]
         public void WhenIAddTestData()
         {
-            GhprNUnitSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
+            GhprMSTestSpecFlowPlugin.TestDataHelper.AddTestData("This is actual", "This is expected", "Comparing...");
         }
 
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0)
         {
-            Assert.AreEqual(p0, (int)_scenarioContext["first"] + (int)_scenarioContext["second"], "Wrong sum!");
+            Assert.AreEqual(p0, (int)_scenarioContext["first"] + (int)_scenarioContext["second"], "Wrong sum");
         }
 
         [Given(@"I take '(.*)' from table")]
@@ -91,14 +91,21 @@ namespace Ghpr.TestsForDebugNUnit
         }
 
         [AfterScenario]
-        public static void WrapUpReport()
+        public void WrapUpReport()
         {
             Console.WriteLine("After Scenario!");
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Warning)
+            switch (_testContext.CurrentTestOutcome)
             {
-                var bytes = TakeScreen();
-                GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
+                case UnitTestOutcome.Failed:
+                case UnitTestOutcome.Error:
+                    var bytes = TakeScreen();
+                    GhprPluginHelper.TestExecutionEngineHelper.ScreenHelper.SaveScreenshot(bytes);
+                    break;
+            
+                default:
+                    break;
             }
         }
+
     }
 }

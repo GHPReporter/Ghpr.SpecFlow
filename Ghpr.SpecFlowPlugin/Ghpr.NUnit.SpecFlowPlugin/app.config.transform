@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <specFlow>
-    <plugins>
-	  <add name="Ghpr.NUnit" type="Runtime"/>
-    </plugins>
-  </specFlow>
-</configuration>
