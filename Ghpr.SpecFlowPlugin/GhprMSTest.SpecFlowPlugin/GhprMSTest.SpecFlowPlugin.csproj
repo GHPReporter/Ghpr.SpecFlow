@@ -17,7 +17,7 @@
     <RepositoryType />
     <RepositoryUrl>https://github.com/GHPReporter/Ghpr.SpecFlow</RepositoryUrl>
     <Copyright>Copyright Evgeniy Kosjakov © 2016-2019</Copyright>
-    <Description>Common code for Ghpr.SpecFlow plugins</Description>
+    <Description>Easy-to-use test run reporter for SpecFlow and MSTest unit test provider</Description>
     <PackageTags>.NET package HTML report reporting tool SpecFlow</PackageTags>
   </PropertyGroup>
   <ItemGroup>
