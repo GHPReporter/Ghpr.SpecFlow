@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Ghpr.SpecFlowPlugin</id>
-    <version>$version$</version>
+    <version>0.9.9.1</version>
     <title>Ghpr.SpecFlowPlugin</title>
     <authors>Evgeniy Kosjakov</authors>
     <owners>Evgeniy Kosjakov</owners>
