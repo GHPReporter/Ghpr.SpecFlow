@@ -3,7 +3,7 @@
     only:
     - nuget
 
-  image: Visual Studio 2017
+  image: Visual Studio 2019
 
   before_build:
     - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
@@ -39,7 +39,7 @@
     only:
     - nuget-common
 
-  image: Visual Studio 2017
+  image: Visual Studio 2019
 
   before_build:
     - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
@@ -75,7 +75,7 @@
     only:
     - nuget-nunit
 
-  image: Visual Studio 2017
+  image: Visual Studio 2019
 
   before_build:
     - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
@@ -111,7 +111,7 @@
     only:
     - nuget-mstest
 
-  image: Visual Studio 2017
+  image: Visual Studio 2019
 
   before_build:
     - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln
@@ -147,7 +147,7 @@
     only:
     - master
 
-  image: Visual Studio 2017
+  image: Visual Studio 2019
 
   before_build:
     - dotnet restore Ghpr.SpecFlowPlugin/Ghpr.SpecFlowPlugin.sln

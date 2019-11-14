@@ -21,13 +21,13 @@
     <PackageTags>.NET package HTML report reporting tool SpecFlow</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Ghpr.Core" Version="0.9.9.1" />
-    <PackageReference Include="Ghpr.LocalFileSystem" Version="0.9.9.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Ghpr.Core" Version="0.9.9.9" />
+    <PackageReference Include="Ghpr.LocalFileSystem" Version="0.9.9.9" />
     <PackageReference Include="BoDi" Version="1.4.1" />
     <PackageReference Include="Gherkin" Version="6.0.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="SpecFlow" Version="3.0.225" />
+    <PackageReference Include="SpecFlow" Version="3.1.62" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj" />
