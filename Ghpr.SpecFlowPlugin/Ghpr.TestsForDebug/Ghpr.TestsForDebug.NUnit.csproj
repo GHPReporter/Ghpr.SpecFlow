@@ -27,7 +27,7 @@
     <PackageReference Include="BoDi" Version="1.4.1" />
     <PackageReference Include="Gherkin" Version="6.0.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="SpecFlow" Version="3.0.225" />
+    <PackageReference Include="SpecFlow" Version="3.1.62" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj" />
