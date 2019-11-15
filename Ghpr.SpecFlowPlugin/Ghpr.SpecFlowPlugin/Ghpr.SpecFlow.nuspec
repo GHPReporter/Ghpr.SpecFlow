@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Ghpr.SpecFlowPlugin</id>
-    <version>0.9.9.1</version>
+    <version>0.9.9.9</version>
     <title>Ghpr.SpecFlowPlugin</title>
     <authors>Evgeniy Kosjakov</authors>
     <owners>Evgeniy Kosjakov</owners>
@@ -15,11 +15,11 @@
     <copyright>Copyright Evgeniy Kosjakov © 2016 - 2019</copyright>
     <tags>.NET package HTML report reporting tool SpecFlow</tags>
     <dependencies>
-      <dependency id="Ghpr.Core" version="0.9.9.1" />
-      <dependency id="Ghpr.LocalFileSystem" version="0.9.9.2" />
-      <dependency id="Ghpr.SpecFlow.Common" version="0.9.9.1" />
-      <dependency id="SpecFlow" version="3.0.225" />
-      <dependency id="Newtonsoft.Json" version="12.0.2" />
+      <dependency id="Ghpr.Core" version="0.9.9.9" />
+      <dependency id="Ghpr.LocalFileSystem" version="0.9.9.9" />
+      <dependency id="Ghpr.SpecFlow.Common" version="0.9.9.9" />
+      <dependency id="SpecFlow" version="3.1.62" />
+      <dependency id="Newtonsoft.Json" version="12.0.3" />
     </dependencies>
   </metadata>
   <files>
@@ -35,6 +35,7 @@
     <file src=".\bin\Release\netcoreapp2.0\Ghpr.SpecFlowPlugin.dll" target="lib\netcoreapp2.0" />
     <file src=".\bin\Release\netcoreapp2.1\Ghpr.SpecFlowPlugin.dll" target="lib\netcoreapp2.1" />
     <file src=".\bin\Release\netcoreapp2.2\Ghpr.SpecFlowPlugin.dll" target="lib\netcoreapp2.2" />
+    <file src=".\bin\Release\netcoreapp3.0\Ghpr.SpecFlowPlugin.dll" target="lib\netcoreapp3.0" />
     <file src=".\bin\Release\netstandard2.0\Ghpr.SpecFlowPlugin.dll" target="lib\netstandard2.0" />
   </files>
 </package>

@@ -1,11 +1,14 @@
 ﻿using Ghpr.Core;
 using Ghpr.Core.Enums;
+using GhprNUnit.SpecFlowPlugin;
 using GhprSpecFlow.Common;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Plugins;
 using TechTalk.SpecFlow.Tracing;
 using TechTalk.SpecFlow.UnitTestProvider;
+
+[assembly: RuntimePlugin(typeof(GhprNUnitSpecFlowPlugin))]
 
 namespace GhprNUnit.SpecFlowPlugin
 {

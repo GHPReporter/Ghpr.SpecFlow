@@ -2,9 +2,10 @@
 using BoDi;
 using Ghpr.Core;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Analytics;
 using TechTalk.SpecFlow.Bindings;
-using TechTalk.SpecFlow.BindingSkeletons;
 using TechTalk.SpecFlow.Configuration;
+using TechTalk.SpecFlow.CucumberMessages;
 using TechTalk.SpecFlow.ErrorHandling;
 using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecFlow.Tracing;
@@ -22,21 +23,28 @@ namespace GhprSpecFlow.Common
         private static readonly object Lock = new object();
 
         public GhprTestExecutionEngine(
-            IStepFormatter stepFormatter, 
-            ITestTracer testTracer, 
-            IErrorProvider errorProvider, 
-            IStepArgumentTypeConverter stepArgumentTypeConverter, 
-            SpecFlowConfiguration specFlowConfiguration, 
-            IBindingRegistry bindingRegistry, 
-            IUnitTestRuntimeProvider unitTestRuntimeProvider, 
-            IStepDefinitionSkeletonProvider stepDefinitionSkeletonProvider, 
-            IContextManager contextManager, 
-            IStepDefinitionMatchService stepDefinitionMatchService, 
-            IDictionary<string, IStepErrorHandler> stepErrorHandlers, 
-            IBindingInvoker bindingInvoker,
-            IObsoleteStepHandler obsoleteStepHandler,
-            ITestObjectResolver testObjectResolver,
-            IObjectContainer objectContainer)
+                IStepFormatter stepFormatter,
+                ITestTracer testTracer,
+                IErrorProvider errorProvider,
+                IStepArgumentTypeConverter stepArgumentTypeConverter,
+                SpecFlowConfiguration specFlowConfiguration,
+                IBindingRegistry bindingRegistry,
+                IUnitTestRuntimeProvider unitTestRuntimeProvider,
+                IContextManager contextManager,
+                IStepDefinitionMatchService stepDefinitionMatchService,
+                IDictionary<string, IStepErrorHandler> stepErrorHandlers,
+                IBindingInvoker bindingInvoker,
+                IObsoleteStepHandler obsoleteStepHandler,
+                ICucumberMessageSender cucumberMessageSender,
+                ITestResultFactory testResultFactory,
+                ITestPendingMessageFactory testPendingMessageFactory,
+                ITestUndefinedMessageFactory testUndefinedMessageFactory,
+                ITestRunResultCollector testRunResultCollector,
+                IAnalyticsEventProvider analyticsEventProvider,
+                IAnalyticsTransmitter analyticsTransmitter,
+                ITestRunnerManager testRunnerManager,
+                ITestObjectResolver testObjectResolver = null,
+                IObjectContainer testThreadContainer = null)
         {
             _engine = new TestExecutionEngine(stepFormatter,
                 testTracer,
@@ -45,14 +53,21 @@ namespace GhprSpecFlow.Common
                 specFlowConfiguration,
                 bindingRegistry,
                 unitTestRuntimeProvider,
-                stepDefinitionSkeletonProvider,
                 contextManager,
                 stepDefinitionMatchService,
                 stepErrorHandlers,
-                bindingInvoker, 
+                bindingInvoker,
                 obsoleteStepHandler,
+                cucumberMessageSender,
+                testResultFactory,
+                testPendingMessageFactory,
+                testUndefinedMessageFactory,
+                testRunResultCollector,
+                analyticsEventProvider,
+                analyticsTransmitter,
+                testRunnerManager,
                 testObjectResolver,
-                objectContainer);
+                testThreadContainer);
         }
         
         public void OnTestRunStart()
@@ -111,6 +126,14 @@ namespace GhprSpecFlow.Common
             lock (Lock)
             {
                 _engine.OnScenarioEnd();
+            }
+        }
+
+        public void OnScenarioSkipped()
+        {
+            lock (Lock)
+            {
+                _engine.OnScenarioSkipped();
             }
         }
 
