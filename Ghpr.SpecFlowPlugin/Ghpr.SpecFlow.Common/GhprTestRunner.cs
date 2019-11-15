@@ -110,6 +110,11 @@ namespace GhprSpecFlow.Common
             }
         }
 
+        public void SkipScenario()
+        {
+            _runner.SkipScenario();
+        }
+
         public void Given(string text, string multilineTextArg, Table tableArg, string keyword = null)
         {
             _runner.Given(text, multilineTextArg, tableArg, keyword);

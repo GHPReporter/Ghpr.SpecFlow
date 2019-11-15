@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Ghpr.TestsForDebug.NUnit
+namespace Ghpr.TestsForDebug.NUnitTests
 {
     using TechTalk.SpecFlow;
     using System;

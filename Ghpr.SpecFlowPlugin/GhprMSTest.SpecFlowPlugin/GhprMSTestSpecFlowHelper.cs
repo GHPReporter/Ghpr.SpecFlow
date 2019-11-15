@@ -28,11 +28,14 @@ namespace GhprMSTest.SpecFlowPlugin
             var parameters = new List<string>();
             if (tc?.Properties != null)
             {
-                foreach (KeyValuePair<string, object> entry in tc.Properties)
+                foreach (var entry in tc.Properties)
                 {
-                    if (entry.Key.ToString().ToLower().Contains("parameter"))
+                    if (entry is KeyValuePair<string, object> e)
                     {
-                        parameters.Add($"{entry.Key} = {entry.Value}");
+                        if (e.Key.ToLower().Contains("parameter"))
+                        {
+                            parameters.Add($"{e.Key} = {e.Value}");
+                        }
                     }
                 }
             }

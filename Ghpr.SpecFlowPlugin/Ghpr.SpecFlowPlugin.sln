@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.SpecFlowPlugin", "Ghpr.SpecFlowPlugin\Ghpr.SpecFlowPlugin.csproj", "{84E12915-13CB-4150-8F87-B6DDFDDDFB46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghpr.SpecFlowPlugin", "Ghpr.SpecFlowPlugin\Ghpr.SpecFlowPlugin.csproj", "{84E12915-13CB-4150-8F87-B6DDFDDDFB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprSpecFlow.Common", "Ghpr.SpecFlow.Common\GhprSpecFlow.Common.csproj", "{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhprSpecFlow.Common", "Ghpr.SpecFlow.Common\GhprSpecFlow.Common.csproj", "{ADB6C69E-30A9-4D7F-8C5E-64DAAA9FDCA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprNUnit.SpecFlowPlugin", "Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj", "{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhprNUnit.SpecFlowPlugin", "Ghpr.NUnit.SpecFlowPlugin\GhprNUnit.SpecFlowPlugin.csproj", "{D8F3EF6A-92A7-4A3D-B89B-4FC4CD7C8206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhprMSTest.SpecFlowPlugin", "GhprMSTest.SpecFlowPlugin\GhprMSTest.SpecFlowPlugin.csproj", "{E3C92B3B-4E07-413A-B3DD-5614C1D6F736}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhprMSTest.SpecFlowPlugin", "GhprMSTest.SpecFlowPlugin\GhprMSTest.SpecFlowPlugin.csproj", "{E3C92B3B-4E07-413A-B3DD-5614C1D6F736}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug.NUnit", "Ghpr.TestsForDebug\Ghpr.TestsForDebug.NUnit.csproj", "{5A364047-FD18-4072-A5AB-8FBCC59A5DED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghpr.TestsForDebug.NUnitTests", "Ghpr.TestsForDebug\Ghpr.TestsForDebug.NUnitTests.csproj", "{5A364047-FD18-4072-A5AB-8FBCC59A5DED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghpr.TestsForDebug.MSTest", "Ghpr.TestsForDebug.MSTest\Ghpr.TestsForDebug.MSTest.csproj", "{E9B87FC9-1713-4DAA-968B-DA70C58E899C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghpr.TestsForDebug.MSTestTests", "Ghpr.TestsForDebug.MSTest\Ghpr.TestsForDebug.MSTestTests.csproj", "{E9B87FC9-1713-4DAA-968B-DA70C58E899C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
