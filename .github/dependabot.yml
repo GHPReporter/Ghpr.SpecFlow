@@ -1,0 +1,38 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/Ghpr.SpecFlowPlugin"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.1.2
+    - 2.2.1
+    - 2.2.2
+  - dependency-name: MSTest.TestFramework
+    versions:
+    - 2.1.2
+    - 2.2.1
+    - 2.2.2
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+  - dependency-name: SpecFlow
+    versions:
+    - 3.6.23
+    - 3.7.13
+  - dependency-name: SpecFlow.NUnit
+    versions:
+    - 3.6.23
+    - 3.7.13
+  - dependency-name: SpecFlow.MsTest
+    versions:
+    - 3.6.23
+    - 3.7.13
+  - dependency-name: SpecFlow.Tools.MsBuild.Generation
+    versions:
+    - 3.6.23
+    - 3.7.13
